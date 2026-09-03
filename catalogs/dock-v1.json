@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "themes": [
+    {
+      "id": "prism-blur",
+      "version": 1,
+      "title": "Prism Blur",
+      "titleES": "Prisma difuso",
+      "subtitle": "Soft animated color bloom",
+      "subtitleES": "Resplandor de color animado y suave",
+      "accent": "#DB40E0",
+      "previewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/prism-blur.png",
+      "packageURL": "https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/v1/prism-blur.zip",
+      "sha256": "edc5e95c8e5cdbba278d1c064280341805cb6746ba5f42f351369453ea6b5ad3",
+      "byteCount": 1797585,
+      "frameCount": 17,
+      "fps": 6,
+      "width": 1146,
+      "height": 318
+    }
+  ]
+}
