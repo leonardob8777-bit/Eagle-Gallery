@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "singularity-live",
+  "version": 1,
+  "packageURL": "https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/island-v1/singularity-live-v1.zip",
+  "sha256": "d84c723aa47c548889009cfe8978c88469af7b6e4932ec6bef38d1c63ddf6de6",
+  "byteCount": 3282668,
+  "frameCount": 17,
+  "fps": 6,
+  "width": 1200,
+  "height": 500,
+  "frameSHA256": [
+    "cad08fe8f63098dcbe036d6bde360a284f5bfc41859e963b1b308facf2fdcaa4",
+    "c291cf2d46b5ed5f77bead24ee27d01fa29244d9521abc564462ff2210960019",
+    "4b3ba222c50f9b9c904498d6ce464b947aa01d3aae84e2c78b84fec189e1433f",
+    "c115e6e935ea9a65a77b5876c64d31095d3015686b819ed4415afaf34c1ada8f",
+    "307bb8d76b5ae2f1b8955eca47fcba10683859d99d7519174664468a69de06f4",
+    "66dcaddd95014e2d61e2b2ccbdd34d8f21c047dd00ac509674865a9fed6b4980",
+    "e7ebb0f700bcb9e711386fe12feaed5570c67db6fe2c19134ac61fa750bda1ca",
+    "4e489c3c9187066aac0b0a72edbd87ec9d64be4f196178422c4da022a7667672",
+    "47e7e60640b95051d988b41f619fe19d5712fdbc55f653afe356bb28bc125f19",
+    "d1dfa5f13aecdefb0e8880e6b3bb5ffe29ae5e12936fc8820826772222e91704",
+    "c55282550baaf5f285cf8754fcdb3c1a70d7044984144ab5c6d24588a9b6be15",
+    "4605cf7bcb48eb44e7c08a829f9e85f298be40d966c6d5800b59e027258348ff",
+    "04618e6e46e4e72182bf1bb6931e16f0f102560a7cb1d0d103fae6d3aa2fe517",
+    "155b2cf09e4204251a918bf2c52859a2a7c5b0df3febe39e26fe419711e889ff",
+    "81cfda34a3b57f377199bef63e14644ab9db06c8b264a23bf28cdfc0f5be92d8",
+    "f2f4ef601645a0d5380d48eef46fc8d1e22bfe8b9f83a83a0b8005ea5bc29a9f",
+    "015dc8c33396e756b508deb170c4726bb24b1ee4c07381e21a9ac2cd8a19f37c"
+  ]
+}

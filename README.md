@@ -33,3 +33,18 @@ Selected vertical crops keep faces visible without adding padding or changing
 the Dock shape. GIF previews preserve timing when identical frames are merged.
 The output manifest records source hashes and crop anchors for reproducibility.
 Media remains remotely hosted; none of this batch is embedded in the IPA.
+
+## Island Live pilot
+
+`scripts/prepare_island_live.py VIDEO VORTEX_PNG OUTPUT` creates the first
+Island-only animation, Singularity. Each of its 17 frames has the exact
+1200 × 500 canvas and byte-identical alpha channel of the existing Vortex
+asset. Only the RGB artwork inside that mask changes; native geometry is not
+part of this package. The video is sampled at the established 6 FPS rate.
+
+`catalogs/island-live-v1.json` describes the independent `island-v1` release,
+including archive and per-frame SHA-256 hashes. This pilot does not modify the
+Dock catalog or its packages. The app verifies all frames before applying,
+uses one still frame under Reduce Motion, and retains the existing Island
+replacement/removal transaction. Real-device visual acceptance is a separate
+step from build and package validation.
