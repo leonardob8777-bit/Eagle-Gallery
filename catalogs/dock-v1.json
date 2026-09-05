@@ -230,24 +230,6 @@
       "height": 318
     },
     {
-      "id": "padded-room",
-      "version": 2,
-      "title": "Padded Room",
-      "titleES": "Habitación acolchada",
-      "subtitle": "Animated surreal doorway",
-      "subtitleES": "Puerta surrealista animada",
-      "accent": "#94BD99",
-      "previewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/padded-room.png",
-      "animatedPreviewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/padded-room.gif",
-      "packageURL": "https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/v2/padded-room.zip",
-      "sha256": "862579129d41bbbecd7ccb4efca684aaaa0042e88ca92d3eb70482f1bac74d22",
-      "byteCount": 2307027,
-      "frameCount": 17,
-      "fps": 6,
-      "width": 1146,
-      "height": 318
-    },
-    {
       "id": "noir-vision",
       "version": 2,
       "title": "Noir Vision",
