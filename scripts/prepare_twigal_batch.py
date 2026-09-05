@@ -58,6 +58,13 @@ def prepare(source, output):
             "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
             "crop=1146:318:0:(ih-oh)/2+180,setsar=1,format=rgb24"
         )
+    elif theme_id == "twigal-mp4-03":
+        # Raise the artwork inside the Dock so the lower pointed end of the
+        # vertical spiral remains visible instead of falling below the crop.
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2+620,setsar=1,format=rgb24"
+        )
     else:
         filters = ("fps=6," if animated else "") + (
             "scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
