@@ -45,16 +45,18 @@ def prepare(source, output):
     # or transparent corners: the unchanged native Dock supplies its exact mask.
     filter_complex = None
     if theme_id == "twigal-mp4-01":
-        # This source is extremely vertical and its subject disappears under a
-        # conventional center aspect-fill. Preserve the full-height subject in
-        # the center and extend the same moving frame softly to both sides.
-        filters = None
-        filter_complex = (
-            "[0:v]fps=6,split=2[bg][fg];"
-            "[bg]scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
-            "crop=1146:318,gblur=sigma=24[back];"
-            "[fg]scale=-2:318:flags=lanczos[front];"
-            "[back][front]overlay=(W-w)/2:0,setsar=1,format=rgb24[out]"
+        # Keep the standard aspect-fill appearance but look 140 output pixels
+        # above center so the flying character remains inside the Dock crop.
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2-140,setsar=1,format=rgb24"
+        )
+    elif theme_id == "twigal-mp4-02":
+        # Lower the source crop so the seated pool character and both arms are
+        # visible, while retaining the standard full-bleed Dock treatment.
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2+180,setsar=1,format=rgb24"
         )
     else:
         filters = ("fps=6," if animated else "") + (
