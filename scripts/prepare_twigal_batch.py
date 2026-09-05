@@ -28,8 +28,11 @@ def digest(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def prepare(source, output, theme_number=None):
+def prepare(source, output, theme_number=None, *, asset_id=None, asset_title=None, crop_anchor=None):
     animated = source.suffix.lower() in (".mp4", ".mov")
+    if source.suffix.lower() == ".gif":
+        with Image.open(source) as gif:
+            animated = gif.n_frames > 1
     number = re.search(r"\d+", source.stem)
     number = int(number.group()) if number else 1
     if theme_number is not None:
@@ -37,6 +40,11 @@ def prepare(source, output, theme_number=None):
     ext = source.suffix.lower()[1:]
     theme_id = f"twigal-{ext}-{number:02d}" if animated else "twigalaxy"
     title = f"TwiGal {number:02d}" + (" · MOV" if ext == "mov" else "") if animated else "TwiGalaxy"
+    if asset_id is not None:
+        assert re.fullmatch(r"[a-z0-9-]+", asset_id)
+        theme_id = asset_id
+    if asset_title is not None:
+        title = asset_title
     frame_dir = output / "frames" / theme_id
     frame_dir.mkdir(parents=True, exist_ok=False)
     source_hash = digest(source)
@@ -46,7 +54,13 @@ def prepare(source, output, theme_number=None):
     # Aspect-fill from the uncropped original. No baked capsule, padding, tint,
     # or transparent corners: the unchanged native Dock supplies its exact mask.
     filter_complex = None
-    if theme_number is not None and 76 <= theme_number <= 83:
+    if crop_anchor is not None:
+        assert 0 <= crop_anchor <= 1
+        filters = ("fps=6," if animated else "") + (
+            "scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            f"crop=1146:318:(iw-ow)/2:(ih-oh)*{crop_anchor},setsar=1,format=rgb24"
+        )
+    elif theme_number is not None and 76 <= theme_number <= 83:
         # Subject-aware vertical crops for the next eight imports: keep the
         # cloud, moon, faces and car wheels visible at the established scale.
         anchor = {76: 0.025, 77: 0.36, 78: 0.40, 79: 0.12,
@@ -143,7 +157,8 @@ def prepare(source, output, theme_number=None):
             "scale=573:159:flags=lanczos,split[a][b];[a]palettegen=stats_mode=full[p];[b][p]paletteuse=dither=sierra2_4a",
             "-threads", "1", "-loop", "0", str(previews / f"{theme_id}.gif")])
         with Image.open(previews / f"{theme_id}.gif") as gif:
-            assert gif.n_frames == COUNT and gif.size == (573, 159)
+            # GIF encoders can coalesce identical frames without losing time.
+            assert 1 <= gif.n_frames <= COUNT and gif.size == (573, 159)
             durations = []
             for i in range(gif.n_frames):
                 gif.seek(i)
@@ -170,7 +185,8 @@ def prepare(source, output, theme_number=None):
         theme["animatedPreviewURL"] = f"{REMOTE}/{theme_id}.gif"
     print(f"READY {theme_id}: {count} frames, {package.stat().st_size:,} bytes", flush=True)
     return dict(theme=theme, source=str(source), sourceSHA256=source_hash, probe=probe,
-        crop="center aspect-fill; unchanged native mask", shortClips="repeat at source speed")
+        crop=f"aspect-fill; vertical anchor {crop_anchor if crop_anchor is not None else 'default'}; unchanged native mask",
+        shortClips="repeat at source speed")
 
 
 def main():

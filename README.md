@@ -22,3 +22,14 @@ contact sheets to a new output directory. It does not publish automatically.
 
 Release assets must be uploaded and made public before publishing the candidate
 catalog and previews. Existing catalog entries are preserved unchanged.
+
+## Static / Live batch (2026-09-05)
+
+`scripts/prepare_mixed_batch.py SOURCE OUTPUT` prepares the `fotosvideos`
+collection: 39 static images, 37 animated GIFs, and 2 videos. This brings the
+catalog to 182 styles (46 Static and 136 Live). The v6 packages use the same
+dimensions, frame rate, and native-mask contract as the existing collection.
+Selected vertical crops keep faces visible without adding padding or changing
+the Dock shape. GIF previews preserve timing when identical frames are merged.
+The output manifest records source hashes and crop anchors for reproducibility.
+Media remains remotely hosted; none of this batch is embedded in the IPA.
