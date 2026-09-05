@@ -65,6 +65,40 @@ def prepare(source, output):
             "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
             "crop=1146:318:0:(ih-oh)/2+620,setsar=1,format=rgb24"
         )
+    elif theme_id == "twigal-mp4-18":
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2+25,setsar=1,format=rgb24"
+        )
+    elif theme_id == "twigal-mp4-21":
+        # The center crop contained mostly empty sky. Lower the sampled region
+        # to frame the hand and bouquet together.
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2+250,setsar=1,format=rgb24"
+        )
+    elif theme_id == "twigal-mp4-22":
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2-300,setsar=1,format=rgb24"
+        )
+    elif theme_id in ("twigal-mp4-23", "twigal-mp4-28"):
+        # These 0.24-second square clips lose their subject under a 3.6:1
+        # aspect-fill. Keep the entire subject and extend the same moving frame
+        # behind it so the Dock remains full bleed without a hard color fill.
+        filters = None
+        filter_complex = (
+            "[0:v]fps=6,split=2[bg][fg];"
+            "[bg]scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318,gblur=sigma=24[back];"
+            "[fg]scale=-2:318:flags=lanczos[front];"
+            "[back][front]overlay=(W-w)/2:0,setsar=1,format=rgb24[out]"
+        )
+    elif theme_id == "twigal-mp4-40":
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318:0:(ih-oh)/2-260,setsar=1,format=rgb24"
+        )
     else:
         filters = ("fps=6," if animated else "") + (
             "scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
