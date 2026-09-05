@@ -48,3 +48,12 @@ Dock catalog or its packages. The app verifies all frames before applying,
 uses one still frame under Reduce Motion, and retains the existing Island
 replacement/removal transaction. Real-device visual acceptance is a separate
 step from build and package validation.
+
+## More collection (2026-09-05)
+
+`scripts/prepare_more_batch.py SOURCE OUTPUT` prepares the mixed `more`
+collection without changing its originals. The v7 release adds 186 Static and
+60 Live styles, bringing Dock Gallery to 428 styles. Every generated frame is
+an RGB PNG at 1146 × 318 with a full-bleed aspect-fill crop; Live styles retain
+the established 17-frame, 6 FPS contract. Packages remain online and download
+only when selected, so the new artwork is not embedded in Eagle's IPA.
