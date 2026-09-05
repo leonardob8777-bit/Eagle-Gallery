@@ -28,10 +28,12 @@ def digest(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def prepare(source, output):
+def prepare(source, output, theme_number=None):
     animated = source.suffix.lower() in (".mp4", ".mov")
     number = re.search(r"\d+", source.stem)
     number = int(number.group()) if number else 1
+    if theme_number is not None:
+        number = theme_number
     ext = source.suffix.lower()[1:]
     theme_id = f"twigal-{ext}-{number:02d}" if animated else "twigalaxy"
     title = f"TwiGal {number:02d}" + (" · MOV" if ext == "mov" else "") if animated else "TwiGalaxy"
@@ -44,7 +46,16 @@ def prepare(source, output):
     # Aspect-fill from the uncropped original. No baked capsule, padding, tint,
     # or transparent corners: the unchanged native Dock supplies its exact mask.
     filter_complex = None
-    if theme_id == "twigal-mp4-01":
+    if theme_number is not None and 76 <= theme_number <= 83:
+        # Subject-aware vertical crops for the next eight imports: keep the
+        # cloud, moon, faces and car wheels visible at the established scale.
+        anchor = {76: 0.025, 77: 0.36, 78: 0.40, 79: 0.12,
+                  80: 0.50, 81: 0.50, 82: 0.72, 83: 0.30}[theme_number]
+        filters = (
+            "fps=6,scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            f"crop=1146:318:0:(ih-oh)*{anchor},setsar=1,format=rgb24"
+        )
+    elif theme_id == "twigal-mp4-01":
         # Keep the standard aspect-fill appearance but look 140 output pixels
         # above center so the flying character remains inside the Dock crop.
         filters = (
