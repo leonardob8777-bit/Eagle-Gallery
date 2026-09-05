@@ -806,24 +806,6 @@
       "animatedPreviewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/twigal-mp4-22.gif"
     },
     {
-      "id": "twigal-mp4-23",
-      "version": 2,
-      "title": "TwiGal 23",
-      "titleES": "TwiGal 23",
-      "subtitle": "",
-      "subtitleES": "",
-      "accent": "#280909",
-      "previewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/twigal-mp4-23.png",
-      "packageURL": "https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/v3/twigal-mp4-23-v2.zip",
-      "sha256": "bb8e800a21e390d6ed05975cf843e72d341e3ed43f9efa42ab82a09ac62d33af",
-      "byteCount": 2329334,
-      "frameCount": 17,
-      "fps": 6,
-      "width": 1146,
-      "height": 318,
-      "animatedPreviewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/twigal-mp4-23.gif"
-    },
-    {
       "id": "twigal-mp4-24",
       "version": 1,
       "title": "TwiGal 24",
@@ -894,24 +876,6 @@
       "width": 1146,
       "height": 318,
       "animatedPreviewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/twigal-mp4-27.gif"
-    },
-    {
-      "id": "twigal-mp4-28",
-      "version": 2,
-      "title": "TwiGal 28",
-      "titleES": "TwiGal 28",
-      "subtitle": "",
-      "subtitleES": "",
-      "accent": "#60181A",
-      "previewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/twigal-mp4-28.png",
-      "packageURL": "https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/v3/twigal-mp4-28-v2.zip",
-      "sha256": "f4af5681a6f9fdd1945cca0a58452df0892503fa56f3cfd6354f2c2adfafa19e",
-      "byteCount": 3023371,
-      "frameCount": 17,
-      "fps": 6,
-      "width": 1146,
-      "height": 318,
-      "animatedPreviewURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/twigal-mp4-28.gif"
     },
     {
       "id": "twigal-mp4-29",
