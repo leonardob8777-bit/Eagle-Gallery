@@ -43,14 +43,32 @@ def prepare(source, output):
     count = COUNT if animated else 1
     # Aspect-fill from the uncropped original. No baked capsule, padding, tint,
     # or transparent corners: the unchanged native Dock supplies its exact mask.
-    filters = ("fps=6," if animated else "") + (
-        "scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
-        "crop=1146:318,setsar=1,format=rgb24")
+    filter_complex = None
+    if theme_id == "twigal-mp4-01":
+        # This source is extremely vertical and its subject disappears under a
+        # conventional center aspect-fill. Preserve the full-height subject in
+        # the center and extend the same moving frame softly to both sides.
+        filters = None
+        filter_complex = (
+            "[0:v]fps=6,split=2[bg][fg];"
+            "[bg]scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318,gblur=sigma=24[back];"
+            "[fg]scale=-2:318:flags=lanczos[front];"
+            "[back][front]overlay=(W-w)/2:0,setsar=1,format=rgb24[out]"
+        )
+    else:
+        filters = ("fps=6," if animated else "") + (
+            "scale=1146:318:force_original_aspect_ratio=increase:flags=lanczos,"
+            "crop=1146:318,setsar=1,format=rgb24")
     command = ["ffmpeg", "-nostdin", "-v", "error", "-xerror"]
     if animated:
         command += ["-stream_loop", "-1"]
-    command += ["-i", str(source), "-an", "-vf", filters, "-frames:v", str(count),
-        "-threads", "1", str(frame_dir / "frame%02d.png")]
+    command += ["-i", str(source), "-an"]
+    if filter_complex:
+        command += ["-filter_complex", filter_complex, "-map", "[out]"]
+    else:
+        command += ["-vf", filters]
+    command += ["-frames:v", str(count), "-threads", "1", str(frame_dir / "frame%02d.png")]
     run(command)
     frames = sorted(frame_dir.glob("frame*.png"))
     assert len(frames) == count, (source, len(frames))
