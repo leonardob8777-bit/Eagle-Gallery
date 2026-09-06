@@ -17,7 +17,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("source", type=Path)
 parser.add_argument("vortex", type=Path)
 parser.add_argument("output", type=Path)
+parser.add_argument("--id", default="singularity-live")
+parser.add_argument("--release", default="island-v1")
 args = parser.parse_args()
+assert all(c in "abcdefghijklmnopqrstuvwxyz0123456789-" for c in args.id) and args.id
+assert all(c in "abcdefghijklmnopqrstuvwxyz0123456789-" for c in args.release) and args.release
 source_hash, template_hash = sha(args.source), sha(args.vortex)
 args.output.mkdir(parents=True, exist_ok=False)
 raw = args.output / "raw"
@@ -45,27 +49,27 @@ for index in range(1, 18):
     canvas.paste((0, 0, 0, 0), mask=alpha.point(lambda value: 255 if value == 0 else 0))
     path = frames / f"frame{index:02d}.png"
     canvas.save(path, optimize=True)
-    assert path.stat().st_size <= 448 * 1024
+    assert path.stat().st_size <= 2 * 1024 * 1024
     with Image.open(path) as checked:
         assert checked.getchannel("A").tobytes() == alpha.tobytes()
     hashes.append(sha(path))
-package = args.output / "singularity-live-v1.zip"
+package = args.output / f"{args.id}-v1.zip"
 with zipfile.ZipFile(package, "w", zipfile.ZIP_DEFLATED) as archive:
     for path in sorted(frames.glob("*.png")):
         archive.write(path, path.name)
 with zipfile.ZipFile(package) as archive:
     assert archive.testzip() is None and len(archive.namelist()) == 17
-assert package.stat().st_size <= 8 * 1024 * 1024
+assert package.stat().st_size <= 34 * 1024 * 1024
 previews = args.output / "previews"
 previews.mkdir()
-(previews / "singularity-live.png").write_bytes((frames / "frame01.png").read_bytes())
+(previews / f"{args.id}.png").write_bytes((frames / "frame01.png").read_bytes())
 subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-framerate", "6", "-i",
                 str(frames / "frame%02d.png"), "-filter_complex",
                 "scale=600:250:flags=lanczos,split[a][b];[a]palettegen=reserve_transparent=1[p];"
                 "[b][p]paletteuse=dither=sierra2_4a:alpha_threshold=128", "-loop", "0",
-                str(previews / "singularity-live.gif")], check=True)
-manifest = dict(schemaVersion=1, id="singularity-live", version=1,
-                packageURL="https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/island-v1/singularity-live-v1.zip",
+                str(previews / f"{args.id}.gif")], check=True)
+manifest = dict(schemaVersion=1, id=args.id, version=1,
+                packageURL=f"https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/{args.release}/{args.id}-v1.zip",
                 sha256=sha(package), byteCount=package.stat().st_size,
                 frameCount=17, fps=6, width=1200, height=500, frameSHA256=hashes)
 (args.output / "island-live-v1.json").write_text(json.dumps(manifest, indent=2) + "\n")
