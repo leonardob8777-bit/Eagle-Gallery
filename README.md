@@ -4,6 +4,40 @@ Remote artwork catalog for Eagle. Packages contain the original PNG frames and
 are published without image recompression. The app verifies package size,
 SHA-256, frame count, and exact dimensions before caching or applying a theme.
 
+## September expansion (2026-09-08)
+
+- Dock: 62 new backgrounds (41 Live and 21 Static), for 490 remote styles total.
+- Island: 208 additions selected from the full Dock collection, including the
+  new backgrounds. The selection favors patterns, flowing light, textures and
+  compositions that remain clear at Island size. Small text, poorly fitting
+  portraits and weak perimeter detail were excluded after visual review.
+- Island additions contain 109 animations and 99 fixed artworks, for 250 remote
+  styles total. Eagle 1.0.4 only loads remote Island content in its Live section;
+  both types appear there. Fixed artworks repeat an identical frame and do not
+  animate. The app's bundled Static section is unchanged.
+- This is a server-only content update: no new IPA, app code, native geometry,
+  previously published themes, or existing packages are changed.
+
+Dock packages are hosted in `v8`. New Island packages use the existing
+`island-gifs-v1` release required by Eagle 1.0.4's URL validation. Island keeps
+the exact Vortex alpha mask on a 1200 × 500 canvas, 17 frames at 6 FPS, archive
+SHA-256 and 17 per-frame hashes. Packages download on demand, not with the app.
+
+`metadata/september-2026.json` records the additions, source hashes, Island crop
+anchors and a review decision for all 490 Dock candidates. Detailed build
+manifests and local source-path inventories remain outside this repository.
+
+Preparation and publication are separate commands:
+
+1. `prepare_september_expansion.py` inventories sources, prepares Dock, renders
+   candidate contact sheets, selects Island artwork and builds the packages.
+2. `verify_september_expansion.py` checks every frame and source, renders small
+   previews, and runs the actual Eagle Swift catalog validators on the candidates.
+3. `publish_september_expansion.py` uploads without replacing existing assets
+   and verifies every public asset's server-side SHA-256 and byte count.
+4. `stage_september_expansion.py` installs the candidates only after offline
+   and public-asset checks. Catalogs and previews are then committed together.
+
 ## TwiGal batch (2026-09-05)
 
 `scripts/prepare_twigal_batch.py SOURCE OUTPUT` prepares 68 videos and one static

@@ -4,9 +4,10 @@ import argparse
 import hashlib
 import json
 import subprocess
+import shutil
 import zipfile
 from pathlib import Path
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 
 def sha(path):
@@ -19,7 +20,15 @@ parser.add_argument("vortex", type=Path)
 parser.add_argument("output", type=Path)
 parser.add_argument("--id", default="singularity-live")
 parser.add_argument("--release", default="island-v1")
+parser.add_argument("--crop-anchor", type=float, default=0.22)
+parser.add_argument("--still", action="store_true", help="Repeat one unchanged image in the 17-frame client format")
 args = parser.parse_args()
+assert 0 <= args.crop_anchor <= 1
+try:
+    with Image.open(args.source) as source_image:
+        args.still = args.still or getattr(source_image, 'n_frames', 1) == 1
+except UnidentifiedImageError:
+    pass  # Video input is sampled by ffmpeg as before.
 assert all(c in "abcdefghijklmnopqrstuvwxyz0123456789-" for c in args.id) and args.id
 assert all(c in "abcdefghijklmnopqrstuvwxyz0123456789-" for c in args.release) and args.release
 source_hash, template_hash = sha(args.source), sha(args.vortex)
@@ -33,13 +42,18 @@ with Image.open(args.vortex) as reference:
     alpha = reference.getchannel("A").copy()
 left, top, right, bottom = alpha.getbbox()
 width, height = right-left, bottom-top
-subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-xerror", "-stream_loop", "-1",
+subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-xerror"] + (["-loop", "1"] if args.still else ["-stream_loop", "-1"]) + [
                 "-i", str(args.source), "-an", "-vf",
                 f"fps=6,scale={width}:{height}:force_original_aspect_ratio=increase:flags=lanczos,"
-                f"crop={width}:{height}:(iw-ow)/2:(ih-oh)*0.22,setsar=1,format=rgb24",
-                "-frames:v", "17", "-threads", "1", str(raw / "frame%02d.png")], check=True)
+                f"crop={width}:{height}:(iw-ow)/2:(ih-oh)*{args.crop_anchor},setsar=1,format=rgb24",
+                "-frames:v", "1" if args.still else "17", "-threads", "1", str(raw / "frame%02d.png")], check=True)
 hashes = []
 for index in range(1, 18):
+    if args.still and index > 1:
+        path = frames / f"frame{index:02d}.png"
+        shutil.copyfile(frames / "frame01.png", path)
+        hashes.append(hashes[0])
+        continue
     canvas = Image.new("RGBA", (1200, 500), (0, 0, 0, 0))
     with Image.open(raw / f"frame{index:02d}.png") as frame:
         canvas.paste(frame, (left, top))
