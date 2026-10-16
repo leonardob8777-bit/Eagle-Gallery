@@ -1,0 +1,188 @@
+[
+  {
+    "id": "october-dock-01",
+    "sourceSHA256": "3d80f9915e8ac96f80623d6c9b9a2d1409b698574682bc68829d670284f67e6c",
+    "crop": "aspect-fill; vertical anchor 0.0; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-02",
+    "sourceSHA256": "e01b66553b7c23be5a4ef05cd924679f92fd1fdae53fac0b4652a2a25e58eb1d",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-03",
+    "sourceSHA256": "8f89ce4012ee9c663f72be026e7376669914ac45f5d6a3ac9e6584f4863c529a",
+    "crop": "aspect-fill; vertical anchor 0.3; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-04",
+    "sourceSHA256": "c41d440f521a2c7ab351f20bb8fbd7120f684f54a8aa1ae553d545aa70eb7ea7",
+    "crop": "aspect-fill; vertical anchor 0.35; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-05",
+    "sourceSHA256": "c4bb222a5d2168215096625c1c03948df6ca32dacc499c6789a83e8bccfb3498",
+    "crop": "aspect-fill; vertical anchor 0.35; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-06",
+    "sourceSHA256": "835c370e81ee17a4561aa4dc0b31971fbd6b793e2be9906968f7527b36c15a02",
+    "crop": "aspect-fill; vertical anchor 0.0; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-07",
+    "sourceSHA256": "1f01823b986bf1ce6cff483ea0f56c240d14ca2fb4cabd0dc5f50d8a8ee006ff",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-08",
+    "sourceSHA256": "79168daa4b45f25f4cd0ac52f6153d550c97b8f1cae0dafeb1bb8b9f3c02eba2",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-09",
+    "sourceSHA256": "3db4962f660e14d4b9627e7782d3e40990c6b013bbb96a050622fc09dc55f715",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-10",
+    "sourceSHA256": "cc207423c80c626a41568b40330b2bcd621d995cdcc098148e229d1979ad23f2",
+    "crop": "aspect-fill; vertical anchor 0.48; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-11",
+    "sourceSHA256": "4cb73fa129d8c04514f19dfea44fa807cb20e45554d94d3193ffe937218ad30a",
+    "crop": "aspect-fill; vertical anchor 0.35; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-12",
+    "sourceSHA256": "24894bf9c6db644deaabd34288f1e2555f169ac822fbc253a6bdcdbace580b7a",
+    "crop": "aspect-fill; vertical anchor 0.0; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-13",
+    "sourceSHA256": "f2f4ce57b9fb716ae9d12310bc9c5e9c07b961a2e54e24394b5c424b97c0e6f3",
+    "crop": "aspect-fill; vertical anchor 0.9; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-14",
+    "sourceSHA256": "d4a47d71a65c717cf1dd25ce11a7df61829ae1150356cc18ad972aeada7ddfa0",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-15",
+    "sourceSHA256": "7fa026bfcc0b81857a40e3b1d0467a4a7d8147456e816acee8be634029f109cf",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-16",
+    "sourceSHA256": "b9145eaefd408eacce2399d26c7cdf80482395cc5535c19578d47de87a2b5966",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-17",
+    "sourceSHA256": "50fbcb6bad9cdef4424e613c08049291cde9532ee5a45ae74b3f458b2d53378f",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-18",
+    "sourceSHA256": "fb825870bd3f58ad80a729fdbbc2440f3e9a4f3b659159f9968946bd323def87",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "static"
+  },
+  {
+    "id": "october-dock-19",
+    "sourceSHA256": "118313d629258a69e81ee40b87758a8a8be74d7da7c81ef060b79b6ac52399e8",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-20",
+    "sourceSHA256": "8b536321787bd49b62a0324560bba80afa10e561c91b756a5b121f0310c7592a",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-21",
+    "sourceSHA256": "d9be539b4ec6ebc5c18e405b894d5524cef7ee05674d23d6bab5b2957db2618b",
+    "crop": "aspect-fill; vertical anchor 0.38; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-22",
+    "sourceSHA256": "21dea826e8a6d793388b8bf609ad72cdfc2d37cd74685d5267f2fdbb840a628c",
+    "crop": "aspect-fill; vertical anchor 0.4; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-23",
+    "sourceSHA256": "5322ff4713ade366ed5343d544cc55d6a60d1ff9950b3096bde6cb555e110c5a",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-24",
+    "sourceSHA256": "fdd1f5fd9f1e3b3369910fe5e2220b6d43df0d3c078bcd1360b96998951ffe26",
+    "crop": "aspect-fill; vertical anchor 0.6; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-25",
+    "sourceSHA256": "2104afb546c64a871091bc939271c0f5980551e3c4219e9ced0793619ac622a1",
+    "crop": "aspect-fill; vertical anchor 0.48; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-26",
+    "sourceSHA256": "5a58363d900cf35d71dd88fcf9d2a10445450e063dc228980adc54f1c6299a0b",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-27",
+    "sourceSHA256": "e86c0bd98a4fd0cb29a4622a5fbabef253236d744c4cbf92f55efae049277b45",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-28",
+    "sourceSHA256": "8b5b0234c4fe6cb14668db395eefcb4b6ce42fd88d79a3890c18089c65677d66",
+    "crop": "aspect-fill; vertical anchor 0.4; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-29",
+    "sourceSHA256": "e8d0ff72d91b860da61186b87a9e7f08f11a4eefe918afd0a15e9c517f7419cc",
+    "crop": "aspect-fill; vertical anchor 0.45; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-30",
+    "sourceSHA256": "21aa3d5ff6cbc81db43ef260b8f923359ff11f2f1e1f0efd8234ddf0c1216980",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  },
+  {
+    "id": "october-dock-31",
+    "sourceSHA256": "c6a6e511b29c5187e88113294b3c1aa8c97bb95d85c7275200686059c313d36c",
+    "crop": "aspect-fill; vertical anchor 0.5; unchanged native mask",
+    "kind": "live"
+  }
+]
