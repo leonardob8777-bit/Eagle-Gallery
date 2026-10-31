@@ -11,7 +11,10 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 PREVIEW_PREFIX = "/leonardob8777-bit/Eagle-Gallery/main/previews/"
-PACKAGE_PREFIX = "/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/"
+PACKAGE_PREFIX = {
+    "passcode": "/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/",
+    "wallpaper": "/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/",
+}
 
 
 def check_entry(entry: dict, kind: str, packages: Path | None) -> None:
@@ -42,7 +45,7 @@ def check_entry(entry: dict, kind: str, packages: Path | None) -> None:
         assert isinstance(size, int) and not isinstance(size, bool) and 0 < size <= limit, identifier
         package = urlparse(entry["url"])
         assert package.scheme == "https" and package.netloc == "raw.githubusercontent.com", identifier
-        assert package.path.startswith(PACKAGE_PREFIX) and not package.query, identifier
+        assert package.path.startswith(PACKAGE_PREFIX[kind]) and not package.query, identifier
         extension = ".passthm" if kind == "passcode" else ".tendies"
         assert package.path.endswith(extension), identifier
         if packages is not None:
@@ -89,9 +92,10 @@ def check_catalog(path: Path, key: str, kind: str, packages: Path | None) -> int
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--packages-dir", type=Path)
+    parser.add_argument("--wallpaper-packages-dir", type=Path)
     args = parser.parse_args()
     check_catalog(ROOT / "catalogs/passcode-v1.json", "themes", "passcode", args.packages_dir)
-    check_catalog(ROOT / "catalogs/wallpaper-v1.json", "wallpapers", "wallpaper", args.packages_dir)
+    check_catalog(ROOT / "catalogs/wallpaper-v1.json", "wallpapers", "wallpaper", args.wallpaper_packages_dir)
 
 
 if __name__ == "__main__":

@@ -140,7 +140,7 @@ def main() -> None:
             "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/"
             f"previews/passcode/applicable/{identifier}.png"
         )
-        theme["description"] = "Diez números aplicables al código de iOS; animación solo en la vista previa."
+        theme["description"] = "Números aplicables. Fondo a juego en Fondos; animación solo en la vista previa."
         theme["url"] = (
             "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/"
             f"passcode/packages/{destination.name}"

@@ -4,9 +4,10 @@
 
 `catalogs/passcode-v1.json` and `catalogs/wallpaper-v1.json` are the publisher-owned
 catalogs for Eagle's Passcode and Wallpapers screens. The Passcode catalog has
-nine installable digit designs with animated in-app previews; the Wallpapers
-catalog is empty. Updating these JSON files and assets later does not require
-a new Eagle IPA.
+nine installable digit designs with animated in-app previews. The Wallpapers
+catalog has nine matching static backgrounds rendered from the same HTML
+concepts with imitation keypad controls hidden. Updating these JSON files and
+assets later does not require a new Eagle IPA.
 
 Each passcode entry in `themes` has:
 
@@ -42,13 +43,18 @@ ZIP package and optional `minimumIOSMajor` (default 17). The example above is
 documentation only; neither catalog advertises an example theme. Keep IDs
 stable for favorites and use a new package URL for every content revision.
 
+The matching wallpaper packages are separate from the Passcode digit packages.
+They install through Eagle's existing PosterBoard importer and must then be
+selected in Wallpapers. The rendered backgrounds are static; CSS animation
+remains in Eagle's in-app preview.
+
 Passcode packages retain Eagle's existing `.passthm` import and digit apply
 flow. Wallpaper packages retain its `.tendies` import into PosterBoard, followed
 by selection in Apple's Wallpapers app. The client checks the advertised package
 size and SHA-256 before importing. Publish previews and packages first, verify
 their public URLs and hashes, then commit and publish the catalog change.
 
-Run `python3 scripts/verify_personal_catalogs.py --packages-dir passcode/packages`
+Run `python3 scripts/verify_personal_catalogs.py --packages-dir passcode/packages --wallpaper-packages-dir wallpapers/packages`
 before publishing a batch. Upload and verify every package before publishing
 its catalog entry.
 

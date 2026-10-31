@@ -1,4 +1,104 @@
 {
   "schemaVersion": 1,
-  "wallpapers": []
+  "wallpapers": [
+    {
+      "id": "orbit",
+      "name": "Orbit",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/orbit.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/orbit-v1.tendies",
+      "byteCount": 164753,
+      "sha256": "056705522cffcc54495c0d6dfca6d3a48cf14d4e04afd33581ed280bdf893db0",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "terminal",
+      "name": "Terminal",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/terminal.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/terminal-v1.tendies",
+      "byteCount": 267532,
+      "sha256": "b6d77faa6c9627fceb49af42a54f31849c5bdcec2c2bba9061ab04a6fac40a34",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "liquid-glass",
+      "name": "Liquid Glass",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/liquid-glass.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/liquid-glass-v1.tendies",
+      "byteCount": 206101,
+      "sha256": "ad0b07e7f50536728ee440a1ff6437ca33e7f9d7ac0e458c37fc9b5828da5502",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "brutal-paper",
+      "name": "Brutal Paper",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/brutal-paper.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/brutal-paper-v1.tendies",
+      "byteCount": 64023,
+      "sha256": "8fa0893690af3b0007a7c8e78d27f1f7e8bed8181cfb49d09574e0a5db65970d",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "synthwave",
+      "name": "Synthwave",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/synthwave.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/synthwave-v1.tendies",
+      "byteCount": 104399,
+      "sha256": "f60b1072e6157adcc2e794ba823b2c85c70371650afb8191c6a12ce0165d210c",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "pumpkin-night",
+      "name": "Pumpkin Night",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/pumpkin-night.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/pumpkin-night-v1.tendies",
+      "byteCount": 69911,
+      "sha256": "947b449f32bfb3d04112945d823f04b5f42324075fe2fe04ed14237627552a6f",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/aurora.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/aurora-v1.tendies",
+      "byteCount": 114791,
+      "sha256": "5184260436daf43994a8ada236976f78f286e879b40935f9691d53ba14c96b6b",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "abyss",
+      "name": "Abyss",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/abyss.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/abyss-v1.tendies",
+      "byteCount": 111416,
+      "sha256": "1c2d1ed58afad754e0ddea7d3fa9c9d81f25d90367103112fe9c312ab9fc613b",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "blueprint",
+      "name": "Blueprint",
+      "description": "Fondo estático del diseño Eagle. Los números se aplican por separado en Passcode.",
+      "authors": "Eagle",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/blueprint.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/blueprint-v1.tendies",
+      "byteCount": 82239,
+      "sha256": "262c996f93853798ea9def3834d69f97b68f5de7cb9a4cb264320f1dcb54a3fa",
+      "minimumIOSMajor": 17
+    }
+  ]
 }
