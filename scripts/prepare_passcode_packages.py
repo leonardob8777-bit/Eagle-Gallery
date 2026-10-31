@@ -141,6 +141,7 @@ def main() -> None:
             f"previews/passcode/applicable/{identifier}.png"
         )
         theme["description"] = "Números aplicables. Fondo a juego en Fondos; animación solo en la vista previa."
+        theme["wallpaperID"] = identifier
         theme["url"] = (
             "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/"
             f"passcode/packages/{destination.name}"

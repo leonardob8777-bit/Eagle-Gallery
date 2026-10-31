@@ -69,6 +69,9 @@ def check_entry(entry: dict, kind: str, packages: Path | None) -> None:
         assert len(data) == entry["demoByteCount"], f"animation size mismatch: {identifier}"
         assert hashlib.sha256(data).hexdigest() == entry["demoSha256"], f"animation SHA-256 mismatch: {identifier}"
 
+    if kind == "passcode" and "wallpaperID" in entry:
+        assert isinstance(entry["wallpaperID"], str) and re.fullmatch(r"[a-z0-9-]{1,80}", entry["wallpaperID"]), identifier
+
     if kind == "wallpaper":
         minimum = entry.get("minimumIOSMajor", 17)
         assert isinstance(minimum, int) and not isinstance(minimum, bool) and 16 <= minimum <= 26
@@ -96,6 +99,10 @@ def main() -> None:
     args = parser.parse_args()
     check_catalog(ROOT / "catalogs/passcode-v1.json", "themes", "passcode", args.packages_dir)
     check_catalog(ROOT / "catalogs/wallpaper-v1.json", "wallpapers", "wallpaper", args.wallpaper_packages_dir)
+    passcode = json.loads((ROOT / "catalogs/passcode-v1.json").read_text())
+    wallpapers = json.loads((ROOT / "catalogs/wallpaper-v1.json").read_text())
+    wallpaper_ids = {entry["id"] for entry in wallpapers["wallpapers"]}
+    assert all(entry["wallpaperID"] in wallpaper_ids for entry in passcode["themes"] if "wallpaperID" in entry), "unlinked passcode wallpaper"
 
 
 if __name__ == "__main__":
