@@ -75,6 +75,17 @@ def check_entry(entry: dict, kind: str, packages: Path | None) -> None:
     if kind == "wallpaper":
         minimum = entry.get("minimumIOSMajor", 17)
         assert isinstance(minimum, int) and not isinstance(minimum, bool) and 16 <= minimum <= 26
+        if "foregroundPreview" in entry:
+            foreground = urlparse(entry["foregroundPreview"])
+            assert foreground.scheme == "https" and foreground.netloc == "raw.githubusercontent.com", identifier
+            assert foreground.path.startswith(PREVIEW_PREFIX + "wallpapers/foreground/") and not foreground.query, identifier
+            foreground_path = ROOT / unquote(foreground.path.removeprefix(
+                "/leonardob8777-bit/Eagle-Gallery/main/"
+            ))
+            assert foreground_path.is_file(), identifier
+            data = foreground_path.read_bytes()
+            assert len(data) == entry["foregroundByteCount"], identifier
+            assert hashlib.sha256(data).hexdigest() == entry["foregroundSha256"], identifier
 
 
 def check_catalog(path: Path, key: str, kind: str, packages: Path | None) -> int:

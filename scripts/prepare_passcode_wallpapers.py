@@ -17,7 +17,6 @@ import uuid
 import zipfile
 
 from PIL import Image
-from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,7 +84,10 @@ def background_caml() -> bytes:
 </caml>'''.encode()
 
 
-def floating_caml() -> bytes:
+def floating_caml(has_subject: bool = False) -> bytes:
+    if has_subject:
+        return f'''<?xml version="1.0" encoding="UTF-8"?>
+<caml xmlns="http://www.apple.com/CoreAnimation/1.0"><CALayer allowsEdgeAntialiasing="1" allowsGroupOpacity="1" bounds="0 0 {WIDTH} {HEIGHT}" contentsFormat="RGBA8" cornerCurve="circular" hidden="0" name="_FLOATING" position="{WIDTH // 2} {HEIGHT // 2}"><sublayers><CATransformLayer allowsEdgeAntialiasing="1" allowsGroupOpacity="1" bounds="0 0 {WIDTH} {HEIGHT}" contentsFormat="RGBA8" cornerCurve="circular" name="Eagle Depth" position="{WIDTH // 2} {HEIGHT // 2}"><sublayers><CALayer allowsEdgeAntialiasing="1" allowsGroupOpacity="1" bounds="0 0 {WIDTH} {HEIGHT}" contentsFormat="RGBA8" cornerCurve="circular" name="Eagle Subject" position="{WIDTH // 2} {HEIGHT // 2}"><contents type="CGImage" src="assets/subject.png"/></CALayer></sublayers></CATransformLayer></sublayers>{states()}</CALayer></caml>'''.encode()
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <caml xmlns="http://www.apple.com/CoreAnimation/1.0"><CALayer allowsEdgeAntialiasing="1" allowsGroupOpacity="1" bounds="0 0 {WIDTH} {HEIGHT}" contentsFormat="RGBA8" cornerCurve="circular" hidden="0" name="_BACKGROUND" position="{WIDTH // 2} {HEIGHT // 2}"><sublayers><CALayer allowsEdgeAntialiasing="1" allowsGroupOpacity="1" anchorPoint="0 0" bounds="0 0 0 0" contentsFormat="RGBA8" cornerCurve="circular" name="_CENTER_BACKGROUND" position="{WIDTH // 2} {HEIGHT // 2}"/></sublayers>{states()}</CALayer></caml>'''.encode()
 
@@ -97,11 +99,18 @@ def zip_entry(archive: zipfile.ZipFile, name: str, data: bytes) -> None:
     archive.writestr(info, data, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
 
 
-def build_package(identifier: str, title: str, image: Image.Image) -> Path:
+def build_package(
+    identifier: str,
+    title: str,
+    image: Image.Image,
+    *,
+    foreground_png: bytes | None = None,
+    version: int = 1,
+) -> Path:
     jpg = io.BytesIO()
     image.convert("RGB").save(jpg, format="JPEG", quality=88, optimize=True, subsampling=0)
     image_data = jpg.getvalue()
-    package = PACKAGES / f"{identifier}-v1.tendies"
+    package = PACKAGES / f"{identifier}-v{version}.tendies"
     descriptor_id = str(uuid.uuid5(uuid.NAMESPACE_URL, "eagle-background:" + identifier)).upper()
     numeric_id = int.from_bytes(hashlib.sha256(identifier.encode()).digest()[:3], "big") % 800_000 + 100_000
     descriptor = f"descriptors/{descriptor_id}/"
@@ -146,8 +155,10 @@ def build_package(identifier: str, title: str, image: Image.Image) -> Path:
         background + "assets/1.jpg": image_data,
         floating + "assetManifest.caml": ASSET_MANIFEST,
         floating + "index.xml": index_xml(),
-        floating + "main.caml": floating_caml(),
+        floating + "main.caml": floating_caml(foreground_png is not None),
     }
+    if foreground_png is not None:
+        files[floating + "assets/subject.png"] = foreground_png
     with zipfile.ZipFile(package, "w") as archive:
         for path, data in sorted(files.items()):
             zip_entry(archive, path, data)
@@ -163,6 +174,8 @@ def prepare_html(raw: str) -> str:
 
 
 def main() -> None:
+    from playwright.sync_api import sync_playwright
+
     catalog = json.loads(CATALOG.read_text())
     passcode = json.loads(PASSCODE_CATALOG.read_text())
     assert len(passcode["themes"]) == 9
