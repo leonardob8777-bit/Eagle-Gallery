@@ -138,6 +138,149 @@
       "byteCount": 25128,
       "sha256": "176004ad36778133ec3061448c7e09633e431ea2b6a705c9a671dccf8d631180",
       "wallpaperID": "blueprint"
+    },
+    {
+      "id": "creative-enredadera",
+      "name": "Enredadera",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-enredadera.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-enredadera-v1.passthm",
+      "byteCount": 328820,
+      "sha256": "1cf05f5e758ecc801d52a8b31d99949ce6d182658cc8f60f57a84be296915451"
+    },
+    {
+      "id": "creative-bordado",
+      "name": "Bordado",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-bordado.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-bordado-v1.passthm",
+      "byteCount": 385737,
+      "sha256": "991955a2d531466de7f82100de0c59ce02ed786bae956877fc0bd65bed072a9a"
+    },
+    {
+      "id": "creative-cuerda",
+      "name": "Cuerda",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-cuerda.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-cuerda-v1.passthm",
+      "byteCount": 323287,
+      "sha256": "7ee69997e0b272c5d383320e89573a5bb3def82f473e57803637312c817e13e6"
+    },
+    {
+      "id": "creative-constelacion",
+      "name": "Constelación",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-constelacion.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-constelacion-v1.passthm",
+      "byteCount": 438498,
+      "sha256": "f49e07fb3c305b7a02549b84711f4103d709b570b953ff8140b055da9c47defb"
+    },
+    {
+      "id": "creative-cerillas",
+      "name": "Cerillas",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-cerillas.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-cerillas-v1.passthm",
+      "byteCount": 173380,
+      "sha256": "177168ad2543c3f325ce4058b99fb6868f5f88f7c18d3b743babdf07345281df"
+    },
+    {
+      "id": "creative-circuito",
+      "name": "Circuito",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-circuito.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-circuito-v1.passthm",
+      "byteCount": 450103,
+      "sha256": "0acd6221e70b89171b1895257910b68ba5c65c053e258623206576411547b937"
+    },
+    {
+      "id": "creative-fideos",
+      "name": "Fideos",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-fideos.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-fideos-v1.passthm",
+      "byteCount": 302388,
+      "sha256": "d91647c96122b120a13b1a5d2c3e83cbe95fa3522a1b0c9d57014041b0f2a6a8"
+    },
+    {
+      "id": "creative-huesos",
+      "name": "Huesos",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-huesos.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-huesos-v1.passthm",
+      "byteCount": 236652,
+      "sha256": "036c6bc1f46723b04b45be69359f339519dd745260e2908eac3c64bd8a6378e2"
+    },
+    {
+      "id": "creative-vitral",
+      "name": "Vitral",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-vitral.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-vitral-v1.passthm",
+      "byteCount": 424912,
+      "sha256": "39a3810af8eefa824a3836ee8ef97f7f06743b3a1d14627f45a127f744c98360"
+    },
+    {
+      "id": "creative-galaxia",
+      "name": "Galaxia",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-galaxia.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-galaxia-v1.passthm",
+      "byteCount": 612443,
+      "sha256": "b091df747abb328982bc79cf82958588cad225e6bedf15ec1b46fa9572582964"
+    },
+    {
+      "id": "creative-origami",
+      "name": "Origami",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-origami.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-origami-v1.passthm",
+      "byteCount": 230939,
+      "sha256": "6ff4442bfc68183a9ff63d249cc8dca0c8cfe71b0a1f80e5192b80d155da0d31"
+    },
+    {
+      "id": "creative-cinta-washi",
+      "name": "Cinta washi",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-cinta-washi.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-cinta-washi-v1.passthm",
+      "byteCount": 422540,
+      "sha256": "f1ead5d082cb26f384ce5d1df9314c7f303f4320f0ea761367aaee7909d20651"
+    },
+    {
+      "id": "creative-plastilina",
+      "name": "Plastilina",
+      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-plastilina.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-plastilina-v1.passthm",
+      "byteCount": 306297,
+      "sha256": "f9b491d7148fa73a76de6db6246c74b56812ccca303cdd213affed3c8dec34ec"
     }
   ]
 }
