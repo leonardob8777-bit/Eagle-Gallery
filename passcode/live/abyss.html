@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline' 'unsafe-eval'">
+<title>Abyss passcode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<style>html,body{margin:0;height:100%;background:#000;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}x-dc{display:none}</style>
+<script>
+/*
+ * Eagle Passcode Theme Runtime
+ * Renders a theme file (x-dc template + Component class) without any
+ * external dependency and bridges key presses to Swift.
+ *
+ * Swift -> JS:  window.eagle.setCount(n)   // filled dots (0 = reset)
+ *               window.eagle.shake()       // wrong-code feedback
+ * JS -> Swift:  webkit.messageHandlers.eagle.postMessage({type, value})
+ *               type: "digit" | "delete" | "cancel" | "ready"
+ */
+(function () {
+  'use strict';
+
+  // ---- base class used by every theme ---------------------------------
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  // ---- bridge to Swift --------------------------------------------------
+  function post(type, value) {
+    try {
+      if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.eagle) {
+        window.webkit.messageHandlers.eagle.postMessage({ type: type, value: value == null ? null : String(value) });
+      }
+    } catch (e) { /* not inside WKWebView */ }
+  }
+
+  function classify(btn) {
+    const label = (btn.getAttribute('aria-label') || btn.textContent || '').trim().toLowerCase();
+    const digit = label.replace(/[\[\]\s]|k\d/g, '').match(/^\d$/);
+    // the visible digit is the first text node; strip helper labels like "K7"
+    const first = Array.from(btn.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join('').replace(/[\[\]\s]/g, '');
+    if (/^\d$/.test(first)) return { type: 'digit', value: first };
+    if (digit) return { type: 'digit', value: digit[0] };
+    if (/^(del|delete|erase|undo|⌫)$/.test(label)) return { type: 'delete' };
+    if (/^(\^c|cancel|exit|run away|surface|emergency)$/.test(label)) return { type: 'cancel' };
+    return null;
+  }
+
+  // ---- template helpers -------------------------------------------------
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const part of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[part];
+    }
+    return v;
+  }
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => { const v = lookup(scope, p); return v == null ? '' : String(v); });
+  }
+
+  // Build a fresh DOM fragment from the template for the given scope.
+  function build(node, scope, out) {
+    if (node.nodeType === 3) { out.appendChild(document.createTextNode(interp(node.textContent, scope))); return; }
+    if (node.nodeType !== 1) return;
+    const tag = node.tagName.toLowerCase();
+    if (tag === 'helmet') return;
+    if (tag === 'sc-for') {
+      const list = lookup(scope, (node.getAttribute('list') || '').replace(/[{}]/g, '')) || [];
+      const as = node.getAttribute('as') || 'item';
+      list.forEach((item, i) => {
+        const s = Object.create(scope); s[as] = item; s.$index = i;
+        node.childNodes.forEach(c => build(c, s, out));
+      });
+      return;
+    }
+    if (tag === 'sc-if') {
+      const v = lookup(scope, (node.getAttribute('value') || '').replace(/[{}]/g, ''));
+      if (v) node.childNodes.forEach(c => build(c, scope, out));
+      return;
+    }
+    const isSvg = node.namespaceURI === 'http://www.w3.org/2000/svg';
+    const el = isSvg ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(node.tagName);
+    el.__handlers = {};
+    for (const attr of Array.from(node.attributes)) {
+      const name = attr.name;
+      if (name.startsWith('hint-')) continue;
+      const whole = attr.value.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name) && whole) {
+        const fn = lookup(scope, whole[1]);
+        if (typeof fn === 'function') el.__handlers[name.slice(2).toLowerCase()] = fn;
+        continue;
+      }
+      try { el.setAttribute(name, interp(attr.value, scope)); } catch (e) {}
+    }
+    const kids = node.tagName.toLowerCase() === 'template' ? node.content.childNodes : node.childNodes;
+    kids.forEach(c => build(c, scope, el));
+    out.appendChild(el);
+  }
+
+  // Minimal DOM morph so running CSS animations are not restarted.
+  function sameKind(a, b) { return a.nodeType === b.nodeType && (a.nodeType !== 1 || a.tagName === b.tagName); }
+  function morph(oldParent, newParent) {
+    const oldKids = Array.from(oldParent.childNodes);
+    const newKids = Array.from(newParent.childNodes);
+    newKids.forEach((nk, i) => {
+      const ok = oldKids[i];
+      if (!ok) { oldParent.appendChild(nk); attach(nk); return; }
+      if (!sameKind(ok, nk)) { oldParent.replaceChild(nk, ok); attach(nk); return; }
+      if (ok.nodeType === 3) { if (ok.textContent !== nk.textContent) ok.textContent = nk.textContent; return; }
+      // attributes
+      for (const a of Array.from(ok.attributes)) if (!nk.hasAttribute(a.name)) ok.removeAttribute(a.name);
+      for (const a of Array.from(nk.attributes)) if (ok.getAttribute(a.name) !== a.value) ok.setAttribute(a.name, a.value);
+      ok.__handlers = nk.__handlers;
+      morph(ok, nk);
+    });
+    for (let i = newKids.length; i < oldKids.length; i++) oldParent.removeChild(oldKids[i]);
+  }
+  function attach(root) {
+    if (root.nodeType !== 1) return;
+    root.querySelectorAll('*').forEach(() => {});
+  }
+
+  // One delegated listener per event type keeps handlers fresh after morphs.
+  function delegate(host) {
+    ['click', 'input', 'change', 'pointerdown', 'pointerup'].forEach(type => {
+      host.addEventListener(type, ev => {
+        let n = ev.target;
+        while (n && n !== host) {
+          if (type === 'click' && n.tagName === 'BUTTON') {
+            const c = classify(n);
+            if (c) post(c.type, c.value);
+          }
+          const h = n.__handlers && n.__handlers[type];
+          if (h) { h(ev); break; }
+          n = n.parentNode;
+        }
+      });
+    });
+  }
+
+  // ---- boot -------------------------------------------------------------
+  function boot() {
+    const xdc = document.querySelector('x-dc');
+    const scriptEl = document.querySelector('script[data-dc-script]');
+    if (!xdc || !scriptEl) return;
+
+    // move <helmet> contents (fonts, keyframes) into <head>
+    const helmet = xdc.querySelector('helmet');
+    if (helmet) Array.from(helmet.childNodes).forEach(n => document.head.appendChild(n));
+
+    const tpl = document.createElement('template');
+    tpl.innerHTML = xdc.innerHTML;
+    const helmetInTpl = tpl.content.querySelector('helmet');
+    if (helmetInTpl) helmetInTpl.remove();
+
+    // defaults from data-props, overridable by ?accent=%23ff0000 style params
+    const props = {};
+    try {
+      const decl = JSON.parse(scriptEl.getAttribute('data-props') || '{}');
+      Object.keys(decl).forEach(k => { if (k[0] !== '$' && 'default' in decl[k]) props[k] = decl[k].default; });
+    } catch (e) {}
+    new URLSearchParams(location.search).forEach((v, k) => { props[k] = v; });
+
+    const Component = new Function('DCLogic', scriptEl.textContent + '\nreturn Component;')(DCLogic);
+    const comp = new Component(props);
+    comp.props = props;
+    if (!comp.state) comp.state = {};
+
+    const host = document.createElement('div');
+    host.id = 'eagle-theme';
+    host.style.cssText = 'width:100vw;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:flex-start';
+    xdc.replaceWith(host);
+    const stage = document.createElement('div');
+    stage.style.transformOrigin = 'top center';
+    host.appendChild(stage);
+    delegate(host);
+
+    function fit() {
+      // themes are drawn at 390x844; scale to the device screen
+      const s = Math.max(window.innerWidth / 390, window.innerHeight / 844);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', fit);
+    fit();
+
+    let first = true;
+    comp.__render = function () {
+      const vals = comp.renderVals ? comp.renderVals() : {};
+      const frag = document.createElement('div');
+      tpl.content.childNodes.forEach(c => build(c, vals, frag));
+      if (first) { while (frag.firstChild) stage.appendChild(frag.firstChild); first = false; }
+      else morph(stage, frag);
+    };
+    comp.__render();
+    if (comp.componentDidMount) comp.componentDidMount();
+
+    window.eagle = {
+      setCount: function (n) { comp.setState({ n: Math.max(0, Math.min(6, n | 0)) }); },
+      shake: function () {
+        const a = stage.animate([
+          { transform: stage.style.transform + ' translateX(0)' },
+          { transform: stage.style.transform + ' translateX(-14px)' },
+          { transform: stage.style.transform + ' translateX(12px)' },
+          { transform: stage.style.transform + ' translateX(-8px)' },
+          { transform: stage.style.transform + ' translateX(0)' }
+        ], { duration: 380, easing: 'ease-out' });
+        return a;
+      }
+    };
+    post('ready');
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#7fe7ff}a:hover{color:#c4f5ff}
+@keyframes abRay{0%,100%{opacity:.08;transform:skewX(-14deg) translateX(0)}50%{opacity:.28;transform:skewX(-8deg) translateX(18px)}}
+@keyframes abRise{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.8}50%{transform:translate(var(--w),-430px) scale(1)}100%{transform:translate(0,-900px) scale(1.2);opacity:0}}
+@keyframes abJelly{0%,100%{transform:translate(0,0)}50%{transform:translate(-14px,-46px)}}
+@keyframes abPulse{0%,100%{transform:scaleY(1) scaleX(1)}40%{transform:scaleY(.82) scaleX(1.12)}}
+@keyframes abTent{0%,100%{transform:skewX(0)}50%{transform:skewX(10deg)}}
+@keyframes abGlow{0%,100%{filter:drop-shadow(0 0 8px var(--g))}50%{filter:drop-shadow(0 0 22px var(--g))}}
+@keyframes abFish{0%{transform:translateX(-70px) scaleX(-1)}49%{transform:translateX(430px) scaleX(-1)}50%{transform:translateX(430px) scaleX(1)}99%{transform:translateX(-70px) scaleX(1)}100%{transform:translateX(-70px) scaleX(-1)}}
+@keyframes abWobble{0%,100%{border-radius:50% 48% 52% 50%/50% 52% 48% 50%;transform:translateY(0)}50%{border-radius:48% 52% 50% 50%/52% 48% 50% 50%;transform:translateY(-4px)}}
+@keyframes abPearl{0%{transform:translateY(-30px) scale(.4);opacity:0}70%{transform:translateY(3px) scale(1.15);opacity:1}100%{transform:none}}
+@keyframes abCaustic{0%{background-position:0 0,0 0}100%{background-position:120px 80px,-90px 60px}}
+.abk{transition:transform .3s cubic-bezier(.3,1.7,.5,1)}
+.abk:active{transform:scale(.86)}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: linear-gradient(180deg, #0a4a66 0%, #04263b 35%, #010c17 80%); font-family: 'Quicksand', sans-serif; color: #e4fbff; --g: {{glow}}">
+<div aria-hidden="true" style="position: absolute; inset: 0 0 60% 0; background-image: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0 18px, transparent 19px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.06) 0 26px, transparent 27px); background-size: 120px 80px, 90px 60px; animation: abCaustic 10s linear infinite; opacity: .7"></div>
+<div aria-hidden="true" style="position: absolute; left: 40px; top: -40px; width: 60px; height: 560px; background: linear-gradient(180deg, rgba(190,245,255,0.9), transparent); animation: abRay 7s ease-in-out infinite"></div>
+<div aria-hidden="true" style="position: absolute; left: 160px; top: -40px; width: 90px; height: 620px; background: linear-gradient(180deg, rgba(190,245,255,0.8), transparent); animation: abRay 9s ease-in-out 2s infinite"></div>
+<div aria-hidden="true" style="position: absolute; left: 290px; top: -40px; width: 50px; height: 500px; background: linear-gradient(180deg, rgba(190,245,255,0.9), transparent); animation: abRay 8s ease-in-out 4s infinite"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 230px; animation: abFish 26s linear infinite">
+<svg width="34" height="16" viewBox="0 0 34 16"><path d="M2 8 Q12 0 24 8 Q12 16 2 8 Z M24 8 L33 2 L31 8 L33 14 Z" fill="#0e3a52"></path><circle cx="8" cy="7" r="1.3" fill="#7fe7ff"></circle></svg>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 520px; animation: abFish 34s linear -12s infinite">
+<svg width="22" height="11" viewBox="0 0 34 16"><path d="M2 8 Q12 0 24 8 Q12 16 2 8 Z M24 8 L33 2 L31 8 L33 14 Z" fill="#0b2f44"></path></svg>
+</div>
+<div aria-hidden="true" style="position: absolute; right: 26px; top: 70px; animation: abJelly 8s ease-in-out infinite">
+<svg width="70" height="120" viewBox="0 0 70 120" style="overflow: visible; animation: abGlow 3s ease-in-out infinite">
+<g style="transform-origin: 35px 30px; animation: abPulse 1.8s ease-in-out infinite"><path d="M5 34 Q5 4 35 4 Q65 4 65 34 Q55 30 45 34 Q35 30 25 34 Q15 30 5 34 Z" fill="{{glow}}" opacity="0.55"></path><path d="M14 26 Q20 12 35 10" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round"></path></g>
+<g style="transform-origin: 35px 34px; animation: abTent 2.4s ease-in-out infinite" stroke="{{glow}}" stroke-width="1.6" fill="none" opacity="0.7" stroke-linecap="round"><path d="M15 34 Q10 60 18 80 Q24 100 14 116"></path><path d="M28 34 Q24 64 32 86 Q36 104 30 118"></path><path d="M42 34 Q46 62 38 84 Q34 104 42 116"></path><path d="M55 34 Q60 58 52 78 Q46 96 56 112"></path></g>
+</svg>
+</div>
+<sc-for list="{{bubbles}}" as="b" hint-placeholder-count="16">
+<span aria-hidden="true" style="position: absolute; left: {{b.x}}px; top: 870px; width: {{b.s}}px; height: {{b.s}}px; border-radius: 50%; border: 1px solid rgba(228,251,255,0.6); background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7) 0 18%, transparent 30%); --w: {{b.w}}px; animation: abRise {{b.dur}}s ease-in {{b.delay}}s infinite"></span>
+</sc-for>
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 140px 36px 0">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 5px; color: #9fe9fb">DIVE IN</p>
+<p style="margin: 6px 0 0; font-size: 26px; font-weight: 400">Enter passcode</p>
+<div style="display: flex; gap: 14px; margin-top: 20px; height: 16px; align-items: center">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{false}}">
+<span style="width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f3e9ff 35%, #b9a6d8 100%); box-shadow: 0 0 10px rgba(243,233,255,0.8); animation: abPearl .45s ease-out both"></span>
+</sc-if>
+<sc-if value="{{d.off}}" hint-placeholder-val="{{true}}">
+<span style="width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(228,251,255,0.45)"></span>
+</sc-if>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 26px; margin-top: 56px; width: 100%">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="9">
+<div style="display: flex; justify-content: center">
+<button class="abk" onClick="{{k.press}}" style="width: 78px; height: 78px; border: 1px solid rgba(228,251,255,0.55); background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.55) 0 8%, rgba(127,231,255,0.12) 30%, rgba(127,231,255,0.04) 70%), rgba(4,38,59,0.35); box-shadow: inset 0 -6px 14px rgba(127,231,255,0.18), 0 0 18px rgba(127,231,255,0.12); color: #e4fbff; font-family: 'Quicksand', sans-serif; font-size: 30px; font-weight: 400; cursor: pointer; animation: abWobble 4s ease-in-out {{k.delay}}s infinite">{{k.label}}</button>
+</div>
+</sc-for>
+<button onClick="{{clear}}" style="height: 78px; background: none; border: 0; color: #9fe9fb; font-family: 'Quicksand', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Surface</button>
+<div style="display: flex; justify-content: center">
+<button class="abk" onClick="{{press}}" style="width: 78px; height: 78px; border: 1px solid rgba(228,251,255,0.55); background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.55) 0 8%, rgba(127,231,255,0.12) 30%, rgba(127,231,255,0.04) 70%), rgba(4,38,59,0.35); box-shadow: inset 0 -6px 14px rgba(127,231,255,0.18), 0 0 18px rgba(127,231,255,0.12); color: #e4fbff; font-family: 'Quicksand', sans-serif; font-size: 30px; font-weight: 400; cursor: pointer; animation: abWobble 4s ease-in-out -1.3s infinite">0</button>
+</div>
+<button onClick="{{back}}" style="height: 78px; background: none; border: 0; color: #9fe9fb; font-family: 'Quicksand', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Delete</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"glow":{"editor":"color","default":"#c56bff","options":["#c56bff","#3dffd0","#ff6bb0","#6bb8ff"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { n: 0 }; }
+renderVals() {
+const n = this.state.n;
+const press = () => this.setState({ n: n >= 6 ? 1 : n + 1 });
+const bubbles = [];
+for (let i = 0; i < 16; i++) {
+bubbles.push({ x: (i * 71 + 13) % 380, s: 4 + (i % 4) * 4, w: (i % 2 ? 1 : -1) * (8 + (i % 3) * 8), dur: (7 + (i * 1.9) % 7).toFixed(1), delay: (-((i * 1.7) % 12)).toFixed(1) });
+}
+return {
+glow: this.props.glow ?? '#c56bff',
+bubbles,
+dots: [0,1,2,3,4,5].map(i => ({ on: i < n, off: i >= n })),
+keys: ['1','2','3','4','5','6','7','8','9'].map((label, i) => ({ label, press, delay: (-(i * 0.45)).toFixed(2) })),
+press,
+back: () => this.setState({ n: Math.max(0, n - 1) }),
+clear: () => this.setState({ n: 0 })
+};
+}
+}
+</script>
+</body>
+</html>

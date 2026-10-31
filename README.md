@@ -3,7 +3,8 @@
 ## Passcode and Wallpapers catalogs
 
 `catalogs/passcode-v1.json` and `catalogs/wallpaper-v1.json` are the publisher-owned
-catalogs for Eagle's Passcode and Wallpapers screens. They start empty. Add a
+catalogs for Eagle's Passcode and Wallpapers screens. The Passcode catalog has
+nine preview-only concepts; the Wallpapers catalog is empty. Add an installable
 theme only after its preview and package have been prepared and checked. Updating
 these JSON files and assets later does not require a new Eagle IPA.
 
@@ -22,6 +23,16 @@ Each passcode entry in `themes` has:
   "sha256": "64 lowercase hexadecimal characters"
 }
 ```
+
+The owner-supplied `EaglePasscodeThemes.zip` was staged as nine **animated
+previews only**. Its HTML/CSS screens are not installable `.passthm` digit
+images. These entries have `demoURL`, `demoByteCount`, and `demoSha256` in place
+of `url`, `byteCount`, and `sha256`; Eagle must show them as previews without an
+Apply action. The source archive SHA-256 is
+`98a752d5c3210cb7eda8f36f89392e19708f1d5a949e7036282386dc7332b6db`.
+`scripts/prepare_passcode_demos.py` inlines the supplied runtime and disables
+external font requests for the previews. These previews do not alter the iOS
+Passcode screen.
 
 Each wallpaper entry in `wallpapers` uses the same `id`, `name`, `description`,
 `authors`, `preview`, `url`, `byteCount`, and `sha256` fields, with a `.tendies`

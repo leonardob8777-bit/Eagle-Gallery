@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline' 'unsafe-eval'">
+<title>Orbit passcode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<style>html,body{margin:0;height:100%;background:#000;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}x-dc{display:none}</style>
+<script>
+/*
+ * Eagle Passcode Theme Runtime
+ * Renders a theme file (x-dc template + Component class) without any
+ * external dependency and bridges key presses to Swift.
+ *
+ * Swift -> JS:  window.eagle.setCount(n)   // filled dots (0 = reset)
+ *               window.eagle.shake()       // wrong-code feedback
+ * JS -> Swift:  webkit.messageHandlers.eagle.postMessage({type, value})
+ *               type: "digit" | "delete" | "cancel" | "ready"
+ */
+(function () {
+  'use strict';
+
+  // ---- base class used by every theme ---------------------------------
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  // ---- bridge to Swift --------------------------------------------------
+  function post(type, value) {
+    try {
+      if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.eagle) {
+        window.webkit.messageHandlers.eagle.postMessage({ type: type, value: value == null ? null : String(value) });
+      }
+    } catch (e) { /* not inside WKWebView */ }
+  }
+
+  function classify(btn) {
+    const label = (btn.getAttribute('aria-label') || btn.textContent || '').trim().toLowerCase();
+    const digit = label.replace(/[\[\]\s]|k\d/g, '').match(/^\d$/);
+    // the visible digit is the first text node; strip helper labels like "K7"
+    const first = Array.from(btn.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join('').replace(/[\[\]\s]/g, '');
+    if (/^\d$/.test(first)) return { type: 'digit', value: first };
+    if (digit) return { type: 'digit', value: digit[0] };
+    if (/^(del|delete|erase|undo|⌫)$/.test(label)) return { type: 'delete' };
+    if (/^(\^c|cancel|exit|run away|surface|emergency)$/.test(label)) return { type: 'cancel' };
+    return null;
+  }
+
+  // ---- template helpers -------------------------------------------------
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const part of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[part];
+    }
+    return v;
+  }
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => { const v = lookup(scope, p); return v == null ? '' : String(v); });
+  }
+
+  // Build a fresh DOM fragment from the template for the given scope.
+  function build(node, scope, out) {
+    if (node.nodeType === 3) { out.appendChild(document.createTextNode(interp(node.textContent, scope))); return; }
+    if (node.nodeType !== 1) return;
+    const tag = node.tagName.toLowerCase();
+    if (tag === 'helmet') return;
+    if (tag === 'sc-for') {
+      const list = lookup(scope, (node.getAttribute('list') || '').replace(/[{}]/g, '')) || [];
+      const as = node.getAttribute('as') || 'item';
+      list.forEach((item, i) => {
+        const s = Object.create(scope); s[as] = item; s.$index = i;
+        node.childNodes.forEach(c => build(c, s, out));
+      });
+      return;
+    }
+    if (tag === 'sc-if') {
+      const v = lookup(scope, (node.getAttribute('value') || '').replace(/[{}]/g, ''));
+      if (v) node.childNodes.forEach(c => build(c, scope, out));
+      return;
+    }
+    const isSvg = node.namespaceURI === 'http://www.w3.org/2000/svg';
+    const el = isSvg ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(node.tagName);
+    el.__handlers = {};
+    for (const attr of Array.from(node.attributes)) {
+      const name = attr.name;
+      if (name.startsWith('hint-')) continue;
+      const whole = attr.value.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name) && whole) {
+        const fn = lookup(scope, whole[1]);
+        if (typeof fn === 'function') el.__handlers[name.slice(2).toLowerCase()] = fn;
+        continue;
+      }
+      try { el.setAttribute(name, interp(attr.value, scope)); } catch (e) {}
+    }
+    const kids = node.tagName.toLowerCase() === 'template' ? node.content.childNodes : node.childNodes;
+    kids.forEach(c => build(c, scope, el));
+    out.appendChild(el);
+  }
+
+  // Minimal DOM morph so running CSS animations are not restarted.
+  function sameKind(a, b) { return a.nodeType === b.nodeType && (a.nodeType !== 1 || a.tagName === b.tagName); }
+  function morph(oldParent, newParent) {
+    const oldKids = Array.from(oldParent.childNodes);
+    const newKids = Array.from(newParent.childNodes);
+    newKids.forEach((nk, i) => {
+      const ok = oldKids[i];
+      if (!ok) { oldParent.appendChild(nk); attach(nk); return; }
+      if (!sameKind(ok, nk)) { oldParent.replaceChild(nk, ok); attach(nk); return; }
+      if (ok.nodeType === 3) { if (ok.textContent !== nk.textContent) ok.textContent = nk.textContent; return; }
+      // attributes
+      for (const a of Array.from(ok.attributes)) if (!nk.hasAttribute(a.name)) ok.removeAttribute(a.name);
+      for (const a of Array.from(nk.attributes)) if (ok.getAttribute(a.name) !== a.value) ok.setAttribute(a.name, a.value);
+      ok.__handlers = nk.__handlers;
+      morph(ok, nk);
+    });
+    for (let i = newKids.length; i < oldKids.length; i++) oldParent.removeChild(oldKids[i]);
+  }
+  function attach(root) {
+    if (root.nodeType !== 1) return;
+    root.querySelectorAll('*').forEach(() => {});
+  }
+
+  // One delegated listener per event type keeps handlers fresh after morphs.
+  function delegate(host) {
+    ['click', 'input', 'change', 'pointerdown', 'pointerup'].forEach(type => {
+      host.addEventListener(type, ev => {
+        let n = ev.target;
+        while (n && n !== host) {
+          if (type === 'click' && n.tagName === 'BUTTON') {
+            const c = classify(n);
+            if (c) post(c.type, c.value);
+          }
+          const h = n.__handlers && n.__handlers[type];
+          if (h) { h(ev); break; }
+          n = n.parentNode;
+        }
+      });
+    });
+  }
+
+  // ---- boot -------------------------------------------------------------
+  function boot() {
+    const xdc = document.querySelector('x-dc');
+    const scriptEl = document.querySelector('script[data-dc-script]');
+    if (!xdc || !scriptEl) return;
+
+    // move <helmet> contents (fonts, keyframes) into <head>
+    const helmet = xdc.querySelector('helmet');
+    if (helmet) Array.from(helmet.childNodes).forEach(n => document.head.appendChild(n));
+
+    const tpl = document.createElement('template');
+    tpl.innerHTML = xdc.innerHTML;
+    const helmetInTpl = tpl.content.querySelector('helmet');
+    if (helmetInTpl) helmetInTpl.remove();
+
+    // defaults from data-props, overridable by ?accent=%23ff0000 style params
+    const props = {};
+    try {
+      const decl = JSON.parse(scriptEl.getAttribute('data-props') || '{}');
+      Object.keys(decl).forEach(k => { if (k[0] !== '$' && 'default' in decl[k]) props[k] = decl[k].default; });
+    } catch (e) {}
+    new URLSearchParams(location.search).forEach((v, k) => { props[k] = v; });
+
+    const Component = new Function('DCLogic', scriptEl.textContent + '\nreturn Component;')(DCLogic);
+    const comp = new Component(props);
+    comp.props = props;
+    if (!comp.state) comp.state = {};
+
+    const host = document.createElement('div');
+    host.id = 'eagle-theme';
+    host.style.cssText = 'width:100vw;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:flex-start';
+    xdc.replaceWith(host);
+    const stage = document.createElement('div');
+    stage.style.transformOrigin = 'top center';
+    host.appendChild(stage);
+    delegate(host);
+
+    function fit() {
+      // themes are drawn at 390x844; scale to the device screen
+      const s = Math.max(window.innerWidth / 390, window.innerHeight / 844);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', fit);
+    fit();
+
+    let first = true;
+    comp.__render = function () {
+      const vals = comp.renderVals ? comp.renderVals() : {};
+      const frag = document.createElement('div');
+      tpl.content.childNodes.forEach(c => build(c, vals, frag));
+      if (first) { while (frag.firstChild) stage.appendChild(frag.firstChild); first = false; }
+      else morph(stage, frag);
+    };
+    comp.__render();
+    if (comp.componentDidMount) comp.componentDidMount();
+
+    window.eagle = {
+      setCount: function (n) { comp.setState({ n: Math.max(0, Math.min(6, n | 0)) }); },
+      shake: function () {
+        const a = stage.animate([
+          { transform: stage.style.transform + ' translateX(0)' },
+          { transform: stage.style.transform + ' translateX(-14px)' },
+          { transform: stage.style.transform + ' translateX(12px)' },
+          { transform: stage.style.transform + ' translateX(-8px)' },
+          { transform: stage.style.transform + ' translateX(0)' }
+        ], { duration: 380, easing: 'ease-out' });
+        return a;
+      }
+    };
+    post('ready');
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#9aa4ff}a:hover{color:#c9ceff}
+@keyframes obSpin{to{transform:rotate(360deg)}}
+@keyframes obSpinBack{to{transform:rotate(-360deg)}}
+@keyframes obPulse{0%,100%{transform:scale(1);box-shadow:0 0 40px var(--ob),0 0 90px rgba(139,123,255,0.25)}50%{transform:scale(1.08);box-shadow:0 0 70px var(--ob),0 0 160px rgba(139,123,255,0.45)}}
+@keyframes obRipple{0%{transform:scale(0.9);opacity:0.7}100%{transform:scale(2.4);opacity:0}}
+@keyframes obTwinkle{0%,100%{opacity:0.15;transform:scale(0.7)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes obShoot{0%,82%{transform:translate(0,0) rotate(-30deg);opacity:0}85%{opacity:1}100%{transform:translate(-420px,240px) rotate(-30deg);opacity:0}}
+@keyframes obNebula{0%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.15)}100%{transform:translate(0,0) scale(1)}}
+@keyframes obPop{0%{transform:scale(0)}60%{transform:scale(1.6)}100%{transform:scale(1)}}
+@keyframes obFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.obk{transition:background .2s,border-color .2s}
+.obk:active{background:rgba(139,123,255,0.45) !important;border-color:#c9ceff !important}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: radial-gradient(circle at 50% 58%, #1b1640 0%, #08070f 62%); color: #eef0ff; font-family: 'Space Grotesk', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 120px 24px 56px; overflow: hidden; position: relative; --ob: {{accent}}">
+<div aria-hidden="true" style="position: absolute; left: -60px; top: 380px; width: 300px; height: 220px; border-radius: 50%; background: #4b2bbf; filter: blur(80px); opacity: 0.35; animation: obNebula 14s ease-in-out infinite"></div>
+<div aria-hidden="true" style="position: absolute; right: -80px; top: 120px; width: 260px; height: 200px; border-radius: 50%; background: #1f7ad1; filter: blur(80px); opacity: 0.25; animation: obNebula 18s ease-in-out 3s infinite reverse"></div>
+<sc-for list="{{stars}}" as="s" hint-placeholder-count="14">
+<span aria-hidden="true" style="position: absolute; left: {{s.x}}px; top: {{s.y}}px; width: {{s.size}}px; height: {{s.size}}px; border-radius: 50%; background: #ffffff; animation: obTwinkle {{s.dur}}s ease-in-out {{s.delay}}s infinite"></span>
+</sc-for>
+<span aria-hidden="true" style="position: absolute; left: 400px; top: 60px; width: 120px; height: 2px; background: linear-gradient(90deg, #ffffff, transparent); animation: obShoot 7s ease-in 2s infinite"></span>
+<p style="margin: 0; font-size: 13px; letter-spacing: 6px; text-transform: uppercase; color: #a8acd6; animation: obFade 1s ease-out both">Enter passcode</p>
+<div style="display: flex; gap: 14px; margin-top: 22px; height: 12px; align-items: center">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{false}}">
+<span style="width: 10px; height: 10px; border-radius: 50%; background: {{accent}}; box-shadow: 0 0 12px {{accent}}; animation: obPop .35s ease-out"></span>
+</sc-if>
+<sc-if value="{{d.off}}" hint-placeholder-val="{{true}}">
+<span style="width: 8px; height: 8px; border-radius: 50%; border: 1px solid #6b6f9e"></span>
+</sc-if>
+</sc-for>
+</div>
+<div style="position: relative; width: 320px; height: 320px; margin-top: 90px">
+<div aria-hidden="true" style="position: absolute; inset: 30px; border-radius: 50%; border: 1px dashed #4a4d86; animation: obSpinBack 40s linear infinite"></div>
+<div aria-hidden="true" style="position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(139,123,255,0.18)"></div>
+<div aria-hidden="true" style="position: absolute; left: 110px; top: 110px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid {{accent}}; animation: obRipple 3s ease-out infinite"></div>
+<div aria-hidden="true" style="position: absolute; left: 110px; top: 110px; width: 100px; height: 100px; border-radius: 50%; border: 1px solid {{accent}}; animation: obRipple 3s ease-out 1.5s infinite"></div>
+<div aria-hidden="true" style="position: absolute; left: 110px; top: 110px; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ffffff 0%, {{accent}} 40%, #2a1f7a 100%); animation: obPulse 4s ease-in-out infinite"></div>
+<div style="position: absolute; inset: 0; animation: obSpin 60s linear infinite">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="10">
+<button class="obk" onClick="{{k.press}}" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: 60px; height: 60px; border-radius: 50%; border: 1px solid #4a4d86; background: rgba(20,18,48,0.85); color: #eef0ff; font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 300; cursor: pointer; animation: obSpinBack 60s linear infinite">{{k.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="flex-grow: 1"></div>
+<div style="display: flex; justify-content: space-between; width: 100%; padding: 0 20px; box-sizing: border-box">
+<button style="background: none; border: 0; color: #a8acd6; font-family: 'Space Grotesk', sans-serif; font-size: 16px; min-height: 44px; cursor: pointer">Emergency</button>
+<button onClick="{{clear}}" style="background: none; border: 0; color: #a8acd6; font-family: 'Space Grotesk', sans-serif; font-size: 16px; min-height: 44px; cursor: pointer">Cancel</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#8b7bff","options":["#8b7bff","#4fd1ff","#ff7ad9","#7dffb2"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { n: 0 }; }
+renderVals() {
+const n = this.state.n;
+const press = () => this.setState({ n: n >= 6 ? 1 : n + 1 });
+const keys = ['1','2','3','4','5','6','7','8','9','0'].map((label, i) => {
+const a = (i / 10) * Math.PI * 2;
+return { label, press, x: Math.round(130 + 130 * Math.sin(a)), y: Math.round(130 - 130 * Math.cos(a)) };
+});
+const pts = [[30,60],[350,90],[80,200],[300,250],[20,330],[360,400],[50,720],[330,700],[190,40],[120,110],[260,170],[370,560],[15,560],[220,780]];
+const stars = pts.map((p, i) => ({ x: p[0], y: p[1], size: i % 3 === 0 ? 3 : 2, dur: (2 + (i % 4) * 0.7).toFixed(1), delay: ((i * 0.37) % 3).toFixed(2) }));
+return {
+accent: this.props.accent ?? '#8b7bff',
+dots: [0,1,2,3,4,5].map(i => ({ on: i < n, off: i >= n })),
+keys,
+stars,
+clear: () => this.setState({ n: 0 })
+};
+}
+}
+</script>
+</body>
+</html>

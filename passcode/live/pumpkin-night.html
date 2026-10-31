@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline' 'unsafe-eval'">
+<title>Pumpkin night passcode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<style>html,body{margin:0;height:100%;background:#000;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}x-dc{display:none}</style>
+<script>
+/*
+ * Eagle Passcode Theme Runtime
+ * Renders a theme file (x-dc template + Component class) without any
+ * external dependency and bridges key presses to Swift.
+ *
+ * Swift -> JS:  window.eagle.setCount(n)   // filled dots (0 = reset)
+ *               window.eagle.shake()       // wrong-code feedback
+ * JS -> Swift:  webkit.messageHandlers.eagle.postMessage({type, value})
+ *               type: "digit" | "delete" | "cancel" | "ready"
+ */
+(function () {
+  'use strict';
+
+  // ---- base class used by every theme ---------------------------------
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  // ---- bridge to Swift --------------------------------------------------
+  function post(type, value) {
+    try {
+      if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.eagle) {
+        window.webkit.messageHandlers.eagle.postMessage({ type: type, value: value == null ? null : String(value) });
+      }
+    } catch (e) { /* not inside WKWebView */ }
+  }
+
+  function classify(btn) {
+    const label = (btn.getAttribute('aria-label') || btn.textContent || '').trim().toLowerCase();
+    const digit = label.replace(/[\[\]\s]|k\d/g, '').match(/^\d$/);
+    // the visible digit is the first text node; strip helper labels like "K7"
+    const first = Array.from(btn.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join('').replace(/[\[\]\s]/g, '');
+    if (/^\d$/.test(first)) return { type: 'digit', value: first };
+    if (digit) return { type: 'digit', value: digit[0] };
+    if (/^(del|delete|erase|undo|⌫)$/.test(label)) return { type: 'delete' };
+    if (/^(\^c|cancel|exit|run away|surface|emergency)$/.test(label)) return { type: 'cancel' };
+    return null;
+  }
+
+  // ---- template helpers -------------------------------------------------
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const part of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[part];
+    }
+    return v;
+  }
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => { const v = lookup(scope, p); return v == null ? '' : String(v); });
+  }
+
+  // Build a fresh DOM fragment from the template for the given scope.
+  function build(node, scope, out) {
+    if (node.nodeType === 3) { out.appendChild(document.createTextNode(interp(node.textContent, scope))); return; }
+    if (node.nodeType !== 1) return;
+    const tag = node.tagName.toLowerCase();
+    if (tag === 'helmet') return;
+    if (tag === 'sc-for') {
+      const list = lookup(scope, (node.getAttribute('list') || '').replace(/[{}]/g, '')) || [];
+      const as = node.getAttribute('as') || 'item';
+      list.forEach((item, i) => {
+        const s = Object.create(scope); s[as] = item; s.$index = i;
+        node.childNodes.forEach(c => build(c, s, out));
+      });
+      return;
+    }
+    if (tag === 'sc-if') {
+      const v = lookup(scope, (node.getAttribute('value') || '').replace(/[{}]/g, ''));
+      if (v) node.childNodes.forEach(c => build(c, scope, out));
+      return;
+    }
+    const isSvg = node.namespaceURI === 'http://www.w3.org/2000/svg';
+    const el = isSvg ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(node.tagName);
+    el.__handlers = {};
+    for (const attr of Array.from(node.attributes)) {
+      const name = attr.name;
+      if (name.startsWith('hint-')) continue;
+      const whole = attr.value.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name) && whole) {
+        const fn = lookup(scope, whole[1]);
+        if (typeof fn === 'function') el.__handlers[name.slice(2).toLowerCase()] = fn;
+        continue;
+      }
+      try { el.setAttribute(name, interp(attr.value, scope)); } catch (e) {}
+    }
+    const kids = node.tagName.toLowerCase() === 'template' ? node.content.childNodes : node.childNodes;
+    kids.forEach(c => build(c, scope, el));
+    out.appendChild(el);
+  }
+
+  // Minimal DOM morph so running CSS animations are not restarted.
+  function sameKind(a, b) { return a.nodeType === b.nodeType && (a.nodeType !== 1 || a.tagName === b.tagName); }
+  function morph(oldParent, newParent) {
+    const oldKids = Array.from(oldParent.childNodes);
+    const newKids = Array.from(newParent.childNodes);
+    newKids.forEach((nk, i) => {
+      const ok = oldKids[i];
+      if (!ok) { oldParent.appendChild(nk); attach(nk); return; }
+      if (!sameKind(ok, nk)) { oldParent.replaceChild(nk, ok); attach(nk); return; }
+      if (ok.nodeType === 3) { if (ok.textContent !== nk.textContent) ok.textContent = nk.textContent; return; }
+      // attributes
+      for (const a of Array.from(ok.attributes)) if (!nk.hasAttribute(a.name)) ok.removeAttribute(a.name);
+      for (const a of Array.from(nk.attributes)) if (ok.getAttribute(a.name) !== a.value) ok.setAttribute(a.name, a.value);
+      ok.__handlers = nk.__handlers;
+      morph(ok, nk);
+    });
+    for (let i = newKids.length; i < oldKids.length; i++) oldParent.removeChild(oldKids[i]);
+  }
+  function attach(root) {
+    if (root.nodeType !== 1) return;
+    root.querySelectorAll('*').forEach(() => {});
+  }
+
+  // One delegated listener per event type keeps handlers fresh after morphs.
+  function delegate(host) {
+    ['click', 'input', 'change', 'pointerdown', 'pointerup'].forEach(type => {
+      host.addEventListener(type, ev => {
+        let n = ev.target;
+        while (n && n !== host) {
+          if (type === 'click' && n.tagName === 'BUTTON') {
+            const c = classify(n);
+            if (c) post(c.type, c.value);
+          }
+          const h = n.__handlers && n.__handlers[type];
+          if (h) { h(ev); break; }
+          n = n.parentNode;
+        }
+      });
+    });
+  }
+
+  // ---- boot -------------------------------------------------------------
+  function boot() {
+    const xdc = document.querySelector('x-dc');
+    const scriptEl = document.querySelector('script[data-dc-script]');
+    if (!xdc || !scriptEl) return;
+
+    // move <helmet> contents (fonts, keyframes) into <head>
+    const helmet = xdc.querySelector('helmet');
+    if (helmet) Array.from(helmet.childNodes).forEach(n => document.head.appendChild(n));
+
+    const tpl = document.createElement('template');
+    tpl.innerHTML = xdc.innerHTML;
+    const helmetInTpl = tpl.content.querySelector('helmet');
+    if (helmetInTpl) helmetInTpl.remove();
+
+    // defaults from data-props, overridable by ?accent=%23ff0000 style params
+    const props = {};
+    try {
+      const decl = JSON.parse(scriptEl.getAttribute('data-props') || '{}');
+      Object.keys(decl).forEach(k => { if (k[0] !== '$' && 'default' in decl[k]) props[k] = decl[k].default; });
+    } catch (e) {}
+    new URLSearchParams(location.search).forEach((v, k) => { props[k] = v; });
+
+    const Component = new Function('DCLogic', scriptEl.textContent + '\nreturn Component;')(DCLogic);
+    const comp = new Component(props);
+    comp.props = props;
+    if (!comp.state) comp.state = {};
+
+    const host = document.createElement('div');
+    host.id = 'eagle-theme';
+    host.style.cssText = 'width:100vw;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:flex-start';
+    xdc.replaceWith(host);
+    const stage = document.createElement('div');
+    stage.style.transformOrigin = 'top center';
+    host.appendChild(stage);
+    delegate(host);
+
+    function fit() {
+      // themes are drawn at 390x844; scale to the device screen
+      const s = Math.max(window.innerWidth / 390, window.innerHeight / 844);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', fit);
+    fit();
+
+    let first = true;
+    comp.__render = function () {
+      const vals = comp.renderVals ? comp.renderVals() : {};
+      const frag = document.createElement('div');
+      tpl.content.childNodes.forEach(c => build(c, vals, frag));
+      if (first) { while (frag.firstChild) stage.appendChild(frag.firstChild); first = false; }
+      else morph(stage, frag);
+    };
+    comp.__render();
+    if (comp.componentDidMount) comp.componentDidMount();
+
+    window.eagle = {
+      setCount: function (n) { comp.setState({ n: Math.max(0, Math.min(6, n | 0)) }); },
+      shake: function () {
+        const a = stage.animate([
+          { transform: stage.style.transform + ' translateX(0)' },
+          { transform: stage.style.transform + ' translateX(-14px)' },
+          { transform: stage.style.transform + ' translateX(12px)' },
+          { transform: stage.style.transform + ' translateX(-8px)' },
+          { transform: stage.style.transform + ' translateX(0)' }
+        ], { duration: 380, easing: 'ease-out' });
+        return a;
+      }
+    };
+    post('ready');
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#ff9a3c}a:hover{color:#ffc48a}
+@keyframes pkMoon{0%,100%{box-shadow:0 0 40px rgba(255,241,201,0.5),0 0 90px rgba(255,241,201,0.2)}50%{box-shadow:0 0 70px rgba(255,241,201,0.8),0 0 140px rgba(255,241,201,0.35)}}
+@keyframes pkFly1{0%{transform:translate(-60px,140px) scale(0.6)}100%{transform:translate(460px,-40px) scale(1.1)}}
+@keyframes pkFly2{0%{transform:translate(440px,60px) scale(0.9) scaleX(-1)}100%{transform:translate(-80px,210px) scale(0.5) scaleX(-1)}}
+@keyframes pkFlap{0%,100%{transform:scaleY(1)}50%{transform:scaleY(-0.6)}}
+@keyframes pkFog{0%{transform:translateX(-30%)}100%{transform:translateX(10%)}}
+@keyframes pkFlame{0%,100%{transform:scale(1,1) translateY(0);opacity:1}25%{transform:scale(0.9,1.12) translateY(-1px);opacity:0.85}50%{transform:scale(1.08,0.92);opacity:1}75%{transform:scale(0.94,1.06) translateY(-1px);opacity:0.9}}
+@keyframes pkIgnite{0%{transform:scale(0) translateY(6px);opacity:0}70%{transform:scale(1.5);opacity:1}100%{transform:scale(1)}}
+@keyframes pkBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(2deg)}}
+@keyframes pkGhost{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes pkTitle{0%,100%{text-shadow:0 0 14px rgba(255,140,40,0.5);transform:skewX(0)}48%{text-shadow:0 0 30px rgba(255,140,40,0.95)}50%{transform:skewX(-6deg)}52%{transform:skewX(4deg)}54%{transform:skewX(0)}}
+@keyframes pkGlow{0%,100%{box-shadow:inset -8px 0 0 rgba(0,0,0,0.12),inset 8px 0 0 rgba(255,255,255,0.08),0 6px 18px rgba(255,120,30,0.2)}50%{box-shadow:inset -8px 0 0 rgba(0,0,0,0.12),inset 8px 0 0 rgba(255,255,255,0.08),0 6px 28px rgba(255,140,40,0.55)}}
+.pkk{transition:filter .15s}
+.pkk:active{filter:brightness(1.35) drop-shadow(0 0 14px #ffb04a)}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: radial-gradient(circle at 78% 12%, #3b2a5c 0%, #1a0f2e 40%, #0c0716 100%); font-family: 'Fredoka', sans-serif; color: #fff4e6">
+<div aria-hidden="true" style="position: absolute; right: 30px; top: 34px; width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #fffbe8 0%, #fff1c9 60%, #efd9a0 100%); animation: pkMoon 5s ease-in-out infinite"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; animation: pkFly1 9s linear infinite">
+<svg width="34" height="17" viewBox="0 0 24 12" style="animation: pkFlap .22s ease-in-out infinite"><path d="M0 6 Q4 0 8 4 Q10 1 12 4 Q14 1 16 4 Q20 0 24 6 Q18 5 16 9 Q14 7 12 10 Q10 7 8 9 Q6 5 0 6 Z" fill="#07040d"></path></svg>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; animation: pkFly2 12s linear 3s infinite">
+<svg width="26" height="13" viewBox="0 0 24 12" style="animation: pkFlap .26s ease-in-out infinite"><path d="M0 6 Q4 0 8 4 Q10 1 12 4 Q14 1 16 4 Q20 0 24 6 Q18 5 16 9 Q14 7 12 10 Q10 7 8 9 Q6 5 0 6 Z" fill="#07040d"></path></svg>
+</div>
+<svg aria-hidden="true" style="position: absolute; left: 0; bottom: 0" width="390" height="120" viewBox="0 0 390 120"><path d="M0 70 Q60 40 110 72 T220 66 T320 60 T390 72 V120 H0 Z" fill="#07040d"></path><path d="M300 66 L300 20 M300 30 L284 18 M300 38 L318 24" stroke="#07040d" stroke-width="5" stroke-linecap="round"></path></svg>
+<div aria-hidden="true" style="position: absolute; left: 0; bottom: 20px; width: 200%; height: 130px; background: radial-gradient(ellipse at 20% 60%, rgba(200,180,240,0.22), transparent 45%), radial-gradient(ellipse at 60% 50%, rgba(200,180,240,0.18), transparent 40%), radial-gradient(ellipse at 90% 60%, rgba(200,180,240,0.2), transparent 45%); filter: blur(10px); animation: pkFog 16s ease-in-out infinite alternate; pointer-events: none"></div>
+<div aria-hidden="true" style="position: absolute; left: -50%; bottom: 120px; width: 200%; height: 90px; background: radial-gradient(ellipse at 30% 50%, rgba(200,180,240,0.12), transparent 40%), radial-gradient(ellipse at 75% 50%, rgba(200,180,240,0.1), transparent 40%); filter: blur(14px); animation: pkFog 22s ease-in-out infinite alternate-reverse; pointer-events: none"></div>
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 120px 34px 0">
+<p style="margin: 0; font-family: 'Creepster', cursive; font-size: 44px; color: {{glow}}; animation: pkTitle 4s ease-in-out infinite">Trick or Code</p>
+<div style="display: flex; gap: 16px; margin-top: 18px; height: 22px; align-items: flex-end">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{false}}">
+<span style="display: block; animation: pkIgnite .4s ease-out both"><span style="display: block; width: 12px; height: 18px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 50% 70%, #fff6c2 0%, {{glow}} 55%, #c2410c 100%); box-shadow: 0 0 14px {{glow}}, 0 0 28px rgba(255,140,40,0.5); transform-origin: 50% 100%; animation: pkFlame {{d.speed}}s ease-in-out infinite"></span></span>
+</sc-if>
+<sc-if value="{{d.off}}" hint-placeholder-val="{{true}}">
+<span style="width: 12px; height: 18px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #3a2d4f"></span>
+</sc-if>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 22px; margin-top: 52px; width: 100%">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="9">
+<div style="animation: pkBob 3s ease-in-out {{k.delay}}s infinite">
+<button class="pkk" onClick="{{k.press}}" style="position: relative; width: 100%; height: 74px; border-radius: 44% 44% 40% 40%; background: radial-gradient(circle at 50% 35%, #ffb04a 0%, #f2761b 60%, #b84a0c 100%); border: 0; color: #2a1206; font-family: 'Fredoka', sans-serif; font-size: 28px; font-weight: 700; cursor: pointer; animation: pkGlow 2.6s ease-in-out {{k.delay}}s infinite">{{k.label}}<span aria-hidden="true" style="position: absolute; left: 50%; top: -8px; width: 8px; height: 12px; margin-left: -4px; border-radius: 3px; background: #4f7a2a"></span></button>
+</div>
+</sc-for>
+<button onClick="{{clear}}" style="height: 74px; background: none; border: 0; color: #c9b8e6; font-family: 'Fredoka', sans-serif; font-size: 16px; cursor: pointer">Run away</button>
+<div style="animation: pkGhost 2.8s ease-in-out infinite">
+<button class="pkk" onClick="{{press}}" style="position: relative; width: 100%; height: 74px; border-radius: 46% 46% 30% 30%; background: #f4efff; border: 0; box-shadow: 0 0 22px rgba(244,239,255,0.35); color: #1a0f2e; font-family: 'Fredoka', sans-serif; font-size: 28px; font-weight: 700; cursor: pointer">0</button>
+</div>
+<button onClick="{{back}}" style="height: 74px; background: none; border: 0; color: #c9b8e6; font-family: 'Fredoka', sans-serif; font-size: 16px; cursor: pointer">Undo</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"glow":{"editor":"color","default":"#ff9a3c","options":["#ff9a3c","#9dff4f","#b77bff","#ff4f6d"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { n: 0 }; }
+renderVals() {
+const n = this.state.n;
+const press = () => this.setState({ n: n >= 6 ? 1 : n + 1 });
+return {
+glow: this.props.glow ?? '#ff9a3c',
+dots: [0,1,2,3,4,5].map(i => ({ on: i < n, off: i >= n, speed: (0.6 + (i % 3) * 0.17).toFixed(2) })),
+keys: ['1','2','3','4','5','6','7','8','9'].map((label, i) => ({ label, press, delay: (-(i * 0.37) % 3).toFixed(2) })),
+press,
+back: () => this.setState({ n: Math.max(0, n - 1) }),
+clear: () => this.setState({ n: 0 })
+};
+}
+}
+</script>
+</body>
+</html>

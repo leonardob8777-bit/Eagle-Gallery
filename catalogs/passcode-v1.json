@@ -3,5 +3,105 @@
   "repo_name": "Eagle Passcode",
   "repo_author": "Eagle",
   "repo_icon": null,
-  "themes": []
+  "themes": [
+    {
+      "id": "orbit",
+      "name": "Orbit",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/orbit.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/orbit.html",
+      "demoByteCount": 16497,
+      "demoSha256": "cc22580752f2e793b0439d133f70d432fc0ea6a65d8e4660726e842cd9eff440"
+    },
+    {
+      "id": "terminal",
+      "name": "Terminal",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/terminal.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/terminal.html",
+      "demoByteCount": 15979,
+      "demoSha256": "98f6c11bff20b8ca9a88d109b79bb74fc49f4273ea52e2523af8c846184fd1e0"
+    },
+    {
+      "id": "liquid-glass",
+      "name": "Liquid Glass",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/liquid-glass.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/liquid-glass.html",
+      "demoByteCount": 16448,
+      "demoSha256": "9d0d5cc03851262b82f32867961e63711e35028175ecee5d1e06b405719d1f53"
+    },
+    {
+      "id": "brutal-paper",
+      "name": "Brutal Paper",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/brutal-paper.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/brutal-paper.html",
+      "demoByteCount": 15568,
+      "demoSha256": "bcbcbd863a20933afbf788a178f6e6315db2016012beb74c3f86fa901c445669"
+    },
+    {
+      "id": "synthwave",
+      "name": "Synthwave",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/synthwave.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/synthwave.html",
+      "demoByteCount": 15964,
+      "demoSha256": "e8b3b956c0fd5d2da3dcded7a7c3a11e9cce0e020e8e57856b2de018a208dda1"
+    },
+    {
+      "id": "pumpkin-night",
+      "name": "Pumpkin Night",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/pumpkin-night.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/pumpkin-night.html",
+      "demoByteCount": 17676,
+      "demoSha256": "4c9a7f7d9452b7cf892229cbbec6722da342e1c229d4816edb79ef683779ef15"
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/aurora.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/aurora.html",
+      "demoByteCount": 16973,
+      "demoSha256": "4c539b7da32280c665ff103cfee7bbaabc9c84fc9df46c99926a980ea13e6747"
+    },
+    {
+      "id": "abyss",
+      "name": "Abyss",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/abyss.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/abyss.html",
+      "demoByteCount": 18534,
+      "demoSha256": "86a1fcdf07a8f7963f22574a2418fd519869f8926395d5bf329e1edf162de08b"
+    },
+    {
+      "id": "blueprint",
+      "name": "Blueprint",
+      "description": "",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/blueprint.png",
+      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/blueprint.html",
+      "demoByteCount": 17538,
+      "demoSha256": "2241ba072f6a20552ad5715774858481c9479c5b0b2dbeb332a988c3b3ae05d3"
+    }
+  ]
 }

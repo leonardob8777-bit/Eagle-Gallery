@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline' 'unsafe-eval'">
+<title>Synthwave passcode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<style>html,body{margin:0;height:100%;background:#000;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}x-dc{display:none}</style>
+<script>
+/*
+ * Eagle Passcode Theme Runtime
+ * Renders a theme file (x-dc template + Component class) without any
+ * external dependency and bridges key presses to Swift.
+ *
+ * Swift -> JS:  window.eagle.setCount(n)   // filled dots (0 = reset)
+ *               window.eagle.shake()       // wrong-code feedback
+ * JS -> Swift:  webkit.messageHandlers.eagle.postMessage({type, value})
+ *               type: "digit" | "delete" | "cancel" | "ready"
+ */
+(function () {
+  'use strict';
+
+  // ---- base class used by every theme ---------------------------------
+  class DCLogic {
+    constructor(props) { this.props = props || {}; this.state = {}; }
+    setState(patch) {
+      const next = typeof patch === 'function' ? patch(this.state) : patch;
+      this.state = Object.assign({}, this.state, next);
+      if (this.__render) this.__render();
+    }
+    forceUpdate() { if (this.__render) this.__render(); }
+  }
+  window.DCLogic = DCLogic;
+
+  // ---- bridge to Swift --------------------------------------------------
+  function post(type, value) {
+    try {
+      if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.eagle) {
+        window.webkit.messageHandlers.eagle.postMessage({ type: type, value: value == null ? null : String(value) });
+      }
+    } catch (e) { /* not inside WKWebView */ }
+  }
+
+  function classify(btn) {
+    const label = (btn.getAttribute('aria-label') || btn.textContent || '').trim().toLowerCase();
+    const digit = label.replace(/[\[\]\s]|k\d/g, '').match(/^\d$/);
+    // the visible digit is the first text node; strip helper labels like "K7"
+    const first = Array.from(btn.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join('').replace(/[\[\]\s]/g, '');
+    if (/^\d$/.test(first)) return { type: 'digit', value: first };
+    if (digit) return { type: 'digit', value: digit[0] };
+    if (/^(del|delete|erase|undo|⌫)$/.test(label)) return { type: 'delete' };
+    if (/^(\^c|cancel|exit|run away|surface|emergency)$/.test(label)) return { type: 'cancel' };
+    return null;
+  }
+
+  // ---- template helpers -------------------------------------------------
+  const HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  const WHOLE = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+
+  function lookup(scope, path) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    if (/^(['"]).*\1$/.test(path)) return path.slice(1, -1);
+    let v = scope;
+    for (const part of path.split('.')) {
+      if (v == null) return undefined;
+      v = v[part];
+    }
+    return v;
+  }
+  function interp(str, scope) {
+    return str.replace(HOLE, (_, p) => { const v = lookup(scope, p); return v == null ? '' : String(v); });
+  }
+
+  // Build a fresh DOM fragment from the template for the given scope.
+  function build(node, scope, out) {
+    if (node.nodeType === 3) { out.appendChild(document.createTextNode(interp(node.textContent, scope))); return; }
+    if (node.nodeType !== 1) return;
+    const tag = node.tagName.toLowerCase();
+    if (tag === 'helmet') return;
+    if (tag === 'sc-for') {
+      const list = lookup(scope, (node.getAttribute('list') || '').replace(/[{}]/g, '')) || [];
+      const as = node.getAttribute('as') || 'item';
+      list.forEach((item, i) => {
+        const s = Object.create(scope); s[as] = item; s.$index = i;
+        node.childNodes.forEach(c => build(c, s, out));
+      });
+      return;
+    }
+    if (tag === 'sc-if') {
+      const v = lookup(scope, (node.getAttribute('value') || '').replace(/[{}]/g, ''));
+      if (v) node.childNodes.forEach(c => build(c, scope, out));
+      return;
+    }
+    const isSvg = node.namespaceURI === 'http://www.w3.org/2000/svg';
+    const el = isSvg ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(node.tagName);
+    el.__handlers = {};
+    for (const attr of Array.from(node.attributes)) {
+      const name = attr.name;
+      if (name.startsWith('hint-')) continue;
+      const whole = attr.value.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name) && whole) {
+        const fn = lookup(scope, whole[1]);
+        if (typeof fn === 'function') el.__handlers[name.slice(2).toLowerCase()] = fn;
+        continue;
+      }
+      try { el.setAttribute(name, interp(attr.value, scope)); } catch (e) {}
+    }
+    const kids = node.tagName.toLowerCase() === 'template' ? node.content.childNodes : node.childNodes;
+    kids.forEach(c => build(c, scope, el));
+    out.appendChild(el);
+  }
+
+  // Minimal DOM morph so running CSS animations are not restarted.
+  function sameKind(a, b) { return a.nodeType === b.nodeType && (a.nodeType !== 1 || a.tagName === b.tagName); }
+  function morph(oldParent, newParent) {
+    const oldKids = Array.from(oldParent.childNodes);
+    const newKids = Array.from(newParent.childNodes);
+    newKids.forEach((nk, i) => {
+      const ok = oldKids[i];
+      if (!ok) { oldParent.appendChild(nk); attach(nk); return; }
+      if (!sameKind(ok, nk)) { oldParent.replaceChild(nk, ok); attach(nk); return; }
+      if (ok.nodeType === 3) { if (ok.textContent !== nk.textContent) ok.textContent = nk.textContent; return; }
+      // attributes
+      for (const a of Array.from(ok.attributes)) if (!nk.hasAttribute(a.name)) ok.removeAttribute(a.name);
+      for (const a of Array.from(nk.attributes)) if (ok.getAttribute(a.name) !== a.value) ok.setAttribute(a.name, a.value);
+      ok.__handlers = nk.__handlers;
+      morph(ok, nk);
+    });
+    for (let i = newKids.length; i < oldKids.length; i++) oldParent.removeChild(oldKids[i]);
+  }
+  function attach(root) {
+    if (root.nodeType !== 1) return;
+    root.querySelectorAll('*').forEach(() => {});
+  }
+
+  // One delegated listener per event type keeps handlers fresh after morphs.
+  function delegate(host) {
+    ['click', 'input', 'change', 'pointerdown', 'pointerup'].forEach(type => {
+      host.addEventListener(type, ev => {
+        let n = ev.target;
+        while (n && n !== host) {
+          if (type === 'click' && n.tagName === 'BUTTON') {
+            const c = classify(n);
+            if (c) post(c.type, c.value);
+          }
+          const h = n.__handlers && n.__handlers[type];
+          if (h) { h(ev); break; }
+          n = n.parentNode;
+        }
+      });
+    });
+  }
+
+  // ---- boot -------------------------------------------------------------
+  function boot() {
+    const xdc = document.querySelector('x-dc');
+    const scriptEl = document.querySelector('script[data-dc-script]');
+    if (!xdc || !scriptEl) return;
+
+    // move <helmet> contents (fonts, keyframes) into <head>
+    const helmet = xdc.querySelector('helmet');
+    if (helmet) Array.from(helmet.childNodes).forEach(n => document.head.appendChild(n));
+
+    const tpl = document.createElement('template');
+    tpl.innerHTML = xdc.innerHTML;
+    const helmetInTpl = tpl.content.querySelector('helmet');
+    if (helmetInTpl) helmetInTpl.remove();
+
+    // defaults from data-props, overridable by ?accent=%23ff0000 style params
+    const props = {};
+    try {
+      const decl = JSON.parse(scriptEl.getAttribute('data-props') || '{}');
+      Object.keys(decl).forEach(k => { if (k[0] !== '$' && 'default' in decl[k]) props[k] = decl[k].default; });
+    } catch (e) {}
+    new URLSearchParams(location.search).forEach((v, k) => { props[k] = v; });
+
+    const Component = new Function('DCLogic', scriptEl.textContent + '\nreturn Component;')(DCLogic);
+    const comp = new Component(props);
+    comp.props = props;
+    if (!comp.state) comp.state = {};
+
+    const host = document.createElement('div');
+    host.id = 'eagle-theme';
+    host.style.cssText = 'width:100vw;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:flex-start';
+    xdc.replaceWith(host);
+    const stage = document.createElement('div');
+    stage.style.transformOrigin = 'top center';
+    host.appendChild(stage);
+    delegate(host);
+
+    function fit() {
+      // themes are drawn at 390x844; scale to the device screen
+      const s = Math.max(window.innerWidth / 390, window.innerHeight / 844);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', fit);
+    fit();
+
+    let first = true;
+    comp.__render = function () {
+      const vals = comp.renderVals ? comp.renderVals() : {};
+      const frag = document.createElement('div');
+      tpl.content.childNodes.forEach(c => build(c, vals, frag));
+      if (first) { while (frag.firstChild) stage.appendChild(frag.firstChild); first = false; }
+      else morph(stage, frag);
+    };
+    comp.__render();
+    if (comp.componentDidMount) comp.componentDidMount();
+
+    window.eagle = {
+      setCount: function (n) { comp.setState({ n: Math.max(0, Math.min(6, n | 0)) }); },
+      shake: function () {
+        const a = stage.animate([
+          { transform: stage.style.transform + ' translateX(0)' },
+          { transform: stage.style.transform + ' translateX(-14px)' },
+          { transform: stage.style.transform + ' translateX(12px)' },
+          { transform: stage.style.transform + ' translateX(-8px)' },
+          { transform: stage.style.transform + ' translateX(0)' }
+        ], { duration: 380, easing: 'ease-out' });
+        return a;
+      }
+    };
+    post('ready');
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#ff4fd8}a:hover{color:#ffa6ec}
+@keyframes synthGrid{from{background-position:0 0,0 0}to{background-position:0 48px,0 0}}
+@keyframes synthSun{0%{transform:translateY(0) scale(1);filter:brightness(1)}100%{transform:translateY(-8px) scale(1.04);filter:brightness(1.25)}}
+@keyframes synthTwinkle{0%,100%{opacity:0.15}50%{opacity:1}}
+@keyframes synthFlicker{0%,92%,100%{opacity:1}94%{opacity:0.4}96%{opacity:0.9}98%{opacity:0.55}}
+@keyframes synthScan{from{transform:translateY(-100%)}to{transform:translateY(844px)}}</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: linear-gradient(180deg, #12002b 0%, #2b0547 55%, #0b0016 100%); font-family: 'Orbitron', sans-serif; color: #ffffff">
+<div aria-hidden="true" style="position: absolute; left: 95px; top: 70px; width: 200px; height: 200px; border-radius: 50%; background: repeating-linear-gradient(180deg, #ffd23f 0px, #ff4fd8 120px, #ff4fd8 200px); -webkit-mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px); mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px); opacity: 0.85; animation: synthSun 4s ease-in-out infinite alternate"></div>
+<span aria-hidden="true" style="position: absolute; left: 40px; top: 60px; width: 3px; height: 3px; border-radius: 50%; background: #ffffff; animation: synthTwinkle 2.4s ease-in-out infinite"></span>
+<span aria-hidden="true" style="position: absolute; left: 330px; top: 40px; width: 2px; height: 2px; border-radius: 50%; background: #ffffff; animation: synthTwinkle 3.1s ease-in-out 0.6s infinite"></span>
+<span aria-hidden="true" style="position: absolute; left: 70px; top: 150px; width: 2px; height: 2px; border-radius: 50%; background: #ffffff; animation: synthTwinkle 2.8s ease-in-out 1.2s infinite"></span>
+<span aria-hidden="true" style="position: absolute; left: 345px; top: 170px; width: 3px; height: 3px; border-radius: 50%; background: #ffd23f; animation: synthTwinkle 3.6s ease-in-out 0.3s infinite"></span>
+<span aria-hidden="true" style="position: absolute; left: 20px; top: 230px; width: 2px; height: 2px; border-radius: 50%; background: #ffffff; animation: synthTwinkle 2.2s ease-in-out 1.8s infinite"></span>
+<span aria-hidden="true" style="position: absolute; left: 300px; top: 100px; width: 2px; height: 2px; border-radius: 50%; background: #00f0ff; animation: synthTwinkle 2.6s ease-in-out 0.9s infinite"></span>
+<span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 120px; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.05), transparent); animation: synthScan 6s linear infinite; pointer-events: none"></span>
+<div aria-hidden="true" style="position: absolute; left: -200px; right: -200px; bottom: -40px; height: 300px; transform: perspective(260px) rotateX(58deg); transform-origin: bottom; background-image: linear-gradient({{neon}} 2px, transparent 2px), linear-gradient(90deg, {{neon}} 2px, transparent 2px); background-size: 48px 48px; opacity: 0.55; animation: synthGrid 1.1s linear infinite"></div>
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 200px 34px 0">
+<p style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 4px; text-shadow: 0 0 12px #ff4fd8, 0 0 28px #ff4fd8; animation: synthFlicker 5s linear infinite">PLAYER 1</p>
+<p style="margin: 6px 0 0; font-size: 11px; letter-spacing: 5px; color: #ffd23f">INSERT CODE</p>
+<div style="display: flex; gap: 14px; margin-top: 20px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{false}}">
+<span style="width: 14px; height: 14px; transform: rotate(45deg); background: {{neon}}; box-shadow: 0 0 10px {{neon}}"></span>
+</sc-if>
+<sc-if value="{{d.off}}" hint-placeholder-val="{{true}}">
+<span style="width: 12px; height: 12px; transform: rotate(45deg); border: 2px solid rgba(255,255,255,0.45)"></span>
+</sc-if>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; width: 100%">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="9">
+<button onClick="{{k.press}}" style="height: 70px; border-radius: 14px; background: rgba(18,0,43,0.75); border: 2px solid {{neon}}; box-shadow: 0 0 14px {{neon}}, inset 0 0 12px rgba(0,255,240,0.25); color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 500; cursor: pointer">{{k.label}}</button>
+</sc-for>
+<button onClick="{{clear}}" style="height: 70px; background: none; border: 0; color: #ffd23f; font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 2px; cursor: pointer">EXIT</button>
+<button onClick="{{press}}" style="height: 70px; border-radius: 14px; background: rgba(18,0,43,0.75); border: 2px solid #ff4fd8; box-shadow: 0 0 14px #ff4fd8; color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 500; cursor: pointer">0</button>
+<button onClick="{{back}}" style="height: 70px; background: none; border: 0; color: #ffd23f; font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 2px; cursor: pointer">UNDO</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"neon":{"editor":"color","default":"#00f0ff","options":["#00f0ff","#ff4fd8","#7cff4f","#ffd23f"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { n: 0 }; }
+renderVals() {
+const n = this.state.n;
+const press = () => this.setState({ n: n >= 6 ? 1 : n + 1 });
+return {
+neon: this.props.neon ?? '#00f0ff',
+dots: [0,1,2,3,4,5].map(i => ({ on: i < n, off: i >= n })),
+keys: ['1','2','3','4','5','6','7','8','9'].map(label => ({ label, press })),
+press,
+back: () => this.setState({ n: Math.max(0, n - 1) }),
+clear: () => this.setState({ n: 0 })
+};
+}
+}
+</script>
+</body>
+</html>
