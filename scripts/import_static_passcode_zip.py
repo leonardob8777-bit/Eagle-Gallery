@@ -11,7 +11,7 @@ from io import BytesIO
 import json
 from pathlib import Path
 import re
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 from PIL import Image
 
@@ -21,9 +21,9 @@ from prepare_passcode_wallpapers import ROOT, WIDTH, HEIGHT, build_package
 PASSCODE_CATALOG = ROOT / "catalogs/passcode-v1.json"
 WALLPAPER_CATALOG = ROOT / "catalogs/wallpaper-v1.json"
 PASSCODE_PACKAGES = ROOT / "passcode/packages"
-PASSCODE_PREVIEWS = ROOT / "previews/passcode/applicable"
-WALLPAPER_PREVIEWS = ROOT / "previews/wallpapers"
-FOREGROUND_PREVIEWS = WALLPAPER_PREVIEWS / "foreground"
+PASSCODE_PREVIEWS = ROOT / "previews/passcode/applicable-v3"
+WALLPAPER_PREVIEWS = ROOT / "previews/wallpapers/v3"
+FOREGROUND_PREVIEWS = ROOT / "previews/wallpapers/foreground"
 BASE_URL = "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/"
 
 
@@ -76,10 +76,12 @@ def main() -> None:
                 for digit in "0123456789"
             }
 
-            passcode_package = PASSCODE_PACKAGES / f"{identifier}-v2.passthm"
+            passcode_package = PASSCODE_PACKAGES / f"{identifier}-v3.passthm"
             with ZipFile(passcode_package, "w", compression=ZIP_DEFLATED, compresslevel=9) as result:
                 for digit, data in digits.items():
-                    result.writestr(digit + ".png", data)
+                    entry = ZipInfo(digit + ".png", date_time=(2026, 10, 31, 0, 0, 0))
+                    entry.compress_type = ZIP_DEFLATED
+                    result.writestr(entry, data, compress_type=ZIP_DEFLATED, compresslevel=9)
             PASSCODE_PREVIEWS.joinpath(identifier + ".png").write_bytes(reference)
 
             with Image.open(BytesIO(background)) as image:
@@ -88,24 +90,24 @@ def main() -> None:
                     wallpaper_by_id[identifier]["name"],
                     image,
                     foreground_png=foreground,
-                    version=2,
+                    version=3,
                 )
             WALLPAPER_PREVIEWS.joinpath(identifier + ".png").write_bytes(background)
             FOREGROUND_PREVIEWS.joinpath(identifier + ".png").write_bytes(foreground)
 
             item = passcode_by_id[identifier]
             item.update({
-                "preview": BASE_URL + f"previews/passcode/applicable/{identifier}.png",
+                "preview": BASE_URL + f"previews/passcode/applicable-v3/{identifier}.png",
                 "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
                 "wallpaperID": identifier,
                 "url": BASE_URL + f"passcode/packages/{passcode_package.name}",
                 "byteCount": passcode_package.stat().st_size,
                 "sha256": digest(passcode_package.read_bytes()),
-                "version": "2",
+                "version": "3",
             })
             item = wallpaper_by_id[identifier]
             item.update({
-                "preview": BASE_URL + f"previews/wallpapers/{identifier}.png",
+                "preview": BASE_URL + f"previews/wallpapers/v3/{identifier}.png",
                 "foregroundPreview": BASE_URL + f"previews/wallpapers/foreground/{identifier}.png",
                 "foregroundByteCount": len(foreground),
                 "foregroundSha256": digest(foreground),
