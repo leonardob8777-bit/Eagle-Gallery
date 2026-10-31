@@ -11,7 +11,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 PREVIEW_PREFIX = "/leonardob8777-bit/Eagle-Gallery/main/previews/"
-PACKAGE_PREFIX = "/leonardob8777-bit/Eagle-Gallery/releases/download/"
+PACKAGE_PREFIX = "/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/"
 
 
 def check_entry(entry: dict, kind: str, packages: Path | None) -> None:
@@ -41,7 +41,7 @@ def check_entry(entry: dict, kind: str, packages: Path | None) -> None:
         limit = 50 * 1024 * 1024 if kind == "passcode" else 120 * 1024 * 1024
         assert isinstance(size, int) and not isinstance(size, bool) and 0 < size <= limit, identifier
         package = urlparse(entry["url"])
-        assert package.scheme == "https" and package.netloc == "github.com", identifier
+        assert package.scheme == "https" and package.netloc == "raw.githubusercontent.com", identifier
         assert package.path.startswith(PACKAGE_PREFIX) and not package.query, identifier
         extension = ".passthm" if kind == "passcode" else ".tendies"
         assert package.path.endswith(extension), identifier

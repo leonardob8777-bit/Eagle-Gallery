@@ -4,9 +4,9 @@
 
 `catalogs/passcode-v1.json` and `catalogs/wallpaper-v1.json` are the publisher-owned
 catalogs for Eagle's Passcode and Wallpapers screens. The Passcode catalog has
-nine preview-only concepts; the Wallpapers catalog is empty. Add an installable
-theme only after its preview and package have been prepared and checked. Updating
-these JSON files and assets later does not require a new Eagle IPA.
+nine installable digit designs with animated in-app previews; the Wallpapers
+catalog is empty. Updating these JSON files and assets later does not require
+a new Eagle IPA.
 
 Each passcode entry in `themes` has:
 
@@ -18,21 +18,23 @@ Each passcode entry in `themes` has:
   "authors": "Eagle",
   "version": "1",
   "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/example-passcode.png",
-  "url": "https://github.com/leonardob8777-bit/Eagle-Gallery/releases/download/passcode-v1/example-passcode.passthm",
+  "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/example-passcode.passthm",
   "byteCount": 123456,
   "sha256": "64 lowercase hexadecimal characters"
 }
 ```
 
-The owner-supplied `EaglePasscodeThemes.zip` was staged as nine **animated
-previews only**. Its HTML/CSS screens are not installable `.passthm` digit
-images. These entries have `demoURL`, `demoByteCount`, and `demoSha256` in place
-of `url`, `byteCount`, and `sha256`; Eagle must show them as previews without an
-Apply action. The source archive SHA-256 is
+The owner-supplied `EaglePasscodeThemes.zip` contains nine animated full-screen
+HTML concepts, not `.passthm` digit images. `scripts/prepare_passcode_packages.py`
+recreates their key shapes and palettes as ten static PNG digits per package.
+Each catalog entry now has a downloadable `.passthm` and a separate animated
+in-app preview (`demoURL`, `demoByteCount`, `demoSha256`). The package changes
+the real Passcode digits through Eagle's existing Apply action; it does not
+animate the system keypad. The source archive SHA-256 is
 `98a752d5c3210cb7eda8f36f89392e19708f1d5a949e7036282386dc7332b6db`.
 `scripts/prepare_passcode_demos.py` inlines the supplied runtime and disables
-external font requests for the previews. These previews do not alter the iOS
-Passcode screen.
+external font requests for the animated previews. The catalog's static preview
+depicts the actual installable digit set.
 
 Each wallpaper entry in `wallpapers` uses the same `id`, `name`, `description`,
 `authors`, `preview`, `url`, `byteCount`, and `sha256` fields, with a `.tendies`
@@ -46,8 +48,9 @@ by selection in Apple's Wallpapers app. The client checks the advertised package
 size and SHA-256 before importing. Publish previews and packages first, verify
 their public URLs and hashes, then commit and publish the catalog change.
 
-Run `python3 scripts/verify_personal_catalogs.py --packages-dir /path/to/packages`
-before publishing a batch. Omit `--packages-dir` while both catalogs are empty.
+Run `python3 scripts/verify_personal_catalogs.py --packages-dir passcode/packages`
+before publishing a batch. Upload and verify every package before publishing
+its catalog entry.
 
 Remote artwork catalog for Eagle. Packages contain the original PNG frames and
 are published without image recompression. The app verifies package size,
