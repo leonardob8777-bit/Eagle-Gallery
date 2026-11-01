@@ -13,7 +13,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/orbit.png",
       "foregroundByteCount": 26445,
-      "foregroundSha256": "b8e6ed869eba68ebd2116243041e55c1d0c48705aef9c22aad7ea26253525313"
+      "foregroundSha256": "b8e6ed869eba68ebd2116243041e55c1d0c48705aef9c22aad7ea26253525313",
+      "listed": false
     },
     {
       "id": "terminal",
@@ -27,7 +28,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/terminal.png",
       "foregroundByteCount": 157770,
-      "foregroundSha256": "fd6f134dee2e0bedc7ece10fd5d83c155db2a48eb408eda16075042f0a9f57c3"
+      "foregroundSha256": "fd6f134dee2e0bedc7ece10fd5d83c155db2a48eb408eda16075042f0a9f57c3",
+      "listed": false
     },
     {
       "id": "liquid-glass",
@@ -41,7 +43,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/liquid-glass.png",
       "foregroundByteCount": 67058,
-      "foregroundSha256": "4b852e650adbe3395d9e9105e6fbdf7a2ffe0b60400d96490a847d08df0331c0"
+      "foregroundSha256": "4b852e650adbe3395d9e9105e6fbdf7a2ffe0b60400d96490a847d08df0331c0",
+      "listed": false
     },
     {
       "id": "brutal-paper",
@@ -55,7 +58,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/brutal-paper.png",
       "foregroundByteCount": 49174,
-      "foregroundSha256": "bb3e9f0ccc37383887d52e5dbe446d9dcb642e0924215721949543c9bfd98c7d"
+      "foregroundSha256": "bb3e9f0ccc37383887d52e5dbe446d9dcb642e0924215721949543c9bfd98c7d",
+      "listed": false
     },
     {
       "id": "synthwave",
@@ -69,7 +73,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/synthwave.png",
       "foregroundByteCount": 27611,
-      "foregroundSha256": "4671b879cb99647feaf6dde47f209dc93f857fc910d292e31f5923aeb981dca0"
+      "foregroundSha256": "4671b879cb99647feaf6dde47f209dc93f857fc910d292e31f5923aeb981dca0",
+      "listed": false
     },
     {
       "id": "pumpkin-night",
@@ -83,7 +88,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/pumpkin-night.png",
       "foregroundByteCount": 156017,
-      "foregroundSha256": "decfe0723fde9e855b1dbefa9f495ff979e8a8bcdd0d2328e4590d6120e05fe6"
+      "foregroundSha256": "decfe0723fde9e855b1dbefa9f495ff979e8a8bcdd0d2328e4590d6120e05fe6",
+      "listed": false
     },
     {
       "id": "aurora",
@@ -97,7 +103,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/aurora.png",
       "foregroundByteCount": 38497,
-      "foregroundSha256": "69c8daae37665544715d6d17e97221546ecf584fe626f643ba86d0525c03cbb9"
+      "foregroundSha256": "69c8daae37665544715d6d17e97221546ecf584fe626f643ba86d0525c03cbb9",
+      "listed": false
     },
     {
       "id": "abyss",
@@ -111,7 +118,8 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/abyss.png",
       "foregroundByteCount": 116308,
-      "foregroundSha256": "b3b01632c73725b88e67219665360d64f3ff016b47bdbb0fe4c187a4631398cc"
+      "foregroundSha256": "b3b01632c73725b88e67219665360d64f3ff016b47bdbb0fe4c187a4631398cc",
+      "listed": false
     },
     {
       "id": "blueprint",
@@ -125,7 +133,178 @@
       "minimumIOSMajor": 17,
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/blueprint.png",
       "foregroundByteCount": 32987,
-      "foregroundSha256": "5c84d56149e27ffa98db528df458b1978eb75f56e61e72a5a8abef349a283215"
+      "foregroundSha256": "5c84d56149e27ffa98db528df458b1978eb75f56e61e72a5a8abef349a283215",
+      "listed": false
+    },
+    {
+      "id": "puertas-rojas",
+      "name": "Puertas rojas",
+      "names": {
+        "en": "Red Doors",
+        "es": "Puertas rojas",
+        "zh-Hans": "红门"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/puertas-rojas.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/puertas-rojas.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/puertas-rojas.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/puertas-rojas.mp4",
+      "byteCount": 4771201,
+      "sha256": "5e078cb7910eedebf3966f140be363e3118a46061fd61c50149fd9d055636b26",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "avion-azul",
+      "name": "Vuelo azul",
+      "names": {
+        "en": "Blue Flight",
+        "es": "Vuelo azul",
+        "zh-Hans": "蓝色航班"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/avion-azul.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/avion-azul.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/avion-azul.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/avion-azul.mp4",
+      "byteCount": 1798521,
+      "sha256": "5a1c05a6e9f2e3f3d418ce87dce90ad0ea5b44520ad215c56787519c613f6478",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "vaho",
+      "name": "Vaho",
+      "names": {
+        "en": "Mist",
+        "es": "Vaho",
+        "zh-Hans": "雾气"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/vaho.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/vaho.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/vaho.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/vaho.mp4",
+      "byteCount": 2315021,
+      "sha256": "9c825b68dfb916f4a6344c3ea524f3e2fda4c23f59e43a7869b4bc7571305914",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "pelota",
+      "name": "Pelota",
+      "names": {
+        "en": "The Ball",
+        "es": "Pelota",
+        "zh-Hans": "球"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/pelota.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/pelota.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/pelota.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/pelota.mp4",
+      "byteCount": 3223685,
+      "sha256": "6ff8f5b0ae7a4f105c2f896cb7dbafa21d226d123e6b7256b8ed7df007fe0e60",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "hora-dorada",
+      "name": "Hora dorada",
+      "names": {
+        "en": "Golden Hour",
+        "es": "Hora dorada",
+        "zh-Hans": "黄金时刻"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/hora-dorada.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/hora-dorada.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/hora-dorada.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/hora-dorada.mp4",
+      "byteCount": 4303447,
+      "sha256": "f7325153a84a82a2cb984a09a1d0f12ee4fcbfce249d8db378969e0df0fb31f3",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "cuarto-oscuro",
+      "name": "Cuarto oscuro",
+      "names": {
+        "en": "Darkroom",
+        "es": "Cuarto oscuro",
+        "zh-Hans": "暗房"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/cuarto-oscuro.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/cuarto-oscuro.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/cuarto-oscuro.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/cuarto-oscuro.mp4",
+      "byteCount": 1033725,
+      "sha256": "9689db63b8a8ea40286b1b4b72f2419c9739ce2e9a8ecea1ec1437914b64a47f",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "mar-de-papel",
+      "name": "Mar de papel",
+      "names": {
+        "en": "Paper Sea",
+        "es": "Mar de papel",
+        "zh-Hans": "纸之海"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/mar-de-papel.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/mar-de-papel.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/mar-de-papel.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/mar-de-papel.mp4",
+      "byteCount": 7883190,
+      "sha256": "7d86bff29845add1129239cd83a1f4e2cb2dc056779754baaf067a348ecfd774",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "toad",
+      "name": "Toad",
+      "names": {
+        "en": "Toad",
+        "es": "Toad",
+        "zh-Hans": "Toad"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/toad.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/toad.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/toad.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/toad.mp4",
+      "byteCount": 1897644,
+      "sha256": "114209a2b42e3b655aaa0ae217415f2b7b833d58401e1fd619208a1df8e08883",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "hulk",
+      "name": "Hulk",
+      "names": {
+        "en": "Hulk",
+        "es": "Hulk",
+        "zh-Hans": "Hulk"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/hulk.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/hulk.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/hulk.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/hulk.mp4",
+      "byteCount": 10959680,
+      "sha256": "47ed389f5d10665c845a5588aa0fbe5500000f0c5cece79bff2cb8e251343457",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "snoopy",
+      "name": "Snoopy",
+      "names": {
+        "en": "Snoopy",
+        "es": "Snoopy",
+        "zh-Hans": "Snoopy"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/snoopy.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/snoopy.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/snoopy.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/snoopy.mp4",
+      "byteCount": 662953,
+      "sha256": "e310fdaa878dd264c78af9d69b7976651bcecbd8f75fdeb9004045da46324e14",
+      "minimumIOSMajor": 17
     }
   ]
 }
