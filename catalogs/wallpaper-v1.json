@@ -18,7 +18,8 @@
       "names": {
         "en": "Orbit",
         "es": "Orbit",
-        "ru": "Орбита"
+        "ru": "Орбита",
+        "vi": "Quỹ đạo"
       }
     },
     {
@@ -38,7 +39,8 @@
       "names": {
         "en": "Terminal",
         "es": "Terminal",
-        "ru": "Терминал"
+        "ru": "Терминал",
+        "vi": "Terminal"
       }
     },
     {
@@ -58,7 +60,8 @@
       "names": {
         "en": "Liquid Glass",
         "es": "Liquid Glass",
-        "ru": "Жидкое стекло"
+        "ru": "Жидкое стекло",
+        "vi": "Kính lỏng"
       }
     },
     {
@@ -78,7 +81,8 @@
       "names": {
         "en": "Brutal Paper",
         "es": "Brutal Paper",
-        "ru": "Брутальная бумага"
+        "ru": "Брутальная бумага",
+        "vi": "Giấy thô"
       }
     },
     {
@@ -98,7 +102,8 @@
       "names": {
         "en": "Synthwave",
         "es": "Synthwave",
-        "ru": "Synthwave"
+        "ru": "Synthwave",
+        "vi": "Synthwave"
       }
     },
     {
@@ -118,7 +123,8 @@
       "names": {
         "en": "Pumpkin Night",
         "es": "Pumpkin Night",
-        "ru": "Ночь тыкв"
+        "ru": "Ночь тыкв",
+        "vi": "Đêm bí ngô"
       }
     },
     {
@@ -138,7 +144,8 @@
       "names": {
         "en": "Aurora",
         "es": "Aurora",
-        "ru": "Северное сияние"
+        "ru": "Северное сияние",
+        "vi": "Cực quang"
       }
     },
     {
@@ -158,7 +165,8 @@
       "names": {
         "en": "Abyss",
         "es": "Abyss",
-        "ru": "Бездна"
+        "ru": "Бездна",
+        "vi": "Vực thẳm"
       }
     },
     {
@@ -178,7 +186,8 @@
       "names": {
         "en": "Blueprint",
         "es": "Blueprint",
-        "ru": "Чертёж"
+        "ru": "Чертёж",
+        "vi": "Bản vẽ"
       }
     },
     {
@@ -188,7 +197,8 @@
         "en": "Red Doors",
         "es": "Puertas rojas",
         "zh-Hans": "红门",
-        "ru": "Красные двери"
+        "ru": "Красные двери",
+        "vi": "Cửa đỏ"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/puertas-rojas.tendies",
@@ -206,7 +216,8 @@
         "en": "Blue Flight",
         "es": "Vuelo azul",
         "zh-Hans": "蓝色航班",
-        "ru": "Синий полёт"
+        "ru": "Синий полёт",
+        "vi": "Chuyến bay xanh"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/avion-azul.tendies",
@@ -224,7 +235,8 @@
         "en": "Mist",
         "es": "Vaho",
         "zh-Hans": "雾气",
-        "ru": "Туман"
+        "ru": "Туман",
+        "vi": "Sương mờ"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/vaho.tendies",
@@ -242,7 +254,8 @@
         "en": "The Ball",
         "es": "Pelota",
         "zh-Hans": "球",
-        "ru": "Мяч"
+        "ru": "Мяч",
+        "vi": "Quả bóng"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/pelota.tendies",
@@ -260,7 +273,8 @@
         "en": "Golden Hour",
         "es": "Hora dorada",
         "zh-Hans": "黄金时刻",
-        "ru": "Золотой час"
+        "ru": "Золотой час",
+        "vi": "Giờ vàng"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/hora-dorada.tendies",
@@ -278,7 +292,8 @@
         "en": "Darkroom",
         "es": "Cuarto oscuro",
         "zh-Hans": "暗房",
-        "ru": "Тёмная комната"
+        "ru": "Тёмная комната",
+        "vi": "Phòng tối"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/cuarto-oscuro.tendies",
@@ -296,7 +311,8 @@
         "en": "Paper Sea",
         "es": "Mar de papel",
         "zh-Hans": "纸之海",
-        "ru": "Бумажное море"
+        "ru": "Бумажное море",
+        "vi": "Biển giấy"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/mar-de-papel.tendies",
@@ -314,7 +330,8 @@
         "en": "Toad",
         "es": "Toad",
         "zh-Hans": "Toad",
-        "ru": "Toad"
+        "ru": "Toad",
+        "vi": "Toad"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/toad.tendies",
@@ -332,7 +349,8 @@
         "en": "Hulk",
         "es": "Hulk",
         "zh-Hans": "Hulk",
-        "ru": "Hulk"
+        "ru": "Hulk",
+        "vi": "Hulk"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/hulk.tendies",
@@ -350,7 +368,8 @@
         "en": "Snoopy",
         "es": "Snoopy",
         "zh-Hans": "Snoopy",
-        "ru": "Snoopy"
+        "ru": "Snoopy",
+        "vi": "Snoopy"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/snoopy.tendies",
@@ -368,7 +387,8 @@
         "en": "Casper",
         "es": "Casper",
         "zh-Hans": "Casper",
-        "ru": "Casper"
+        "ru": "Casper",
+        "vi": "Casper"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/casper.tendies",
@@ -386,7 +406,8 @@
         "en": "Donuts",
         "es": "Donas",
         "zh-Hans": "甜甜圈",
-        "ru": "Пончики"
+        "ru": "Пончики",
+        "vi": "Bánh donut"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/dona.tendies",
@@ -404,7 +425,8 @@
         "en": "Surprise Box",
         "es": "Caja sorpresa",
         "zh-Hans": "惊喜盒",
-        "ru": "Коробка-сюрприз"
+        "ru": "Коробка-сюрприз",
+        "vi": "Hộp bất ngờ"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/krusty.tendies",
@@ -422,7 +444,8 @@
         "en": "Minions & the Banana",
         "es": "Minions y el plátano",
         "zh-Hans": "小黄人与香蕉",
-        "ru": "Миньоны и банан"
+        "ru": "Миньоны и банан",
+        "vi": "Minions và quả chuối"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/minions.tendies",
@@ -440,7 +463,8 @@
         "en": "Portals",
         "es": "Portales",
         "zh-Hans": "传送门",
-        "ru": "Порталы"
+        "ru": "Порталы",
+        "vi": "Cổng dịch chuyển"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/scooby.tendies",
