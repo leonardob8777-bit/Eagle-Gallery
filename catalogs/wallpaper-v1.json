@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "wallpapers": [
     {
+      "id": "tomjerry",
+      "name": "El queso",
+      "names": {
+        "en": "The Cheese",
+        "es": "El queso",
+        "zh-Hans": "奶酪",
+        "ru": "Сыр",
+        "vi": "Miếng phô mai"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/tomjerry.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/tomjerry.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/tomjerry.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/tomjerry.mp4",
+      "byteCount": 2309430,
+      "sha256": "73a7dbc201ad716178fbc228839c90c8cf8be1d554c99eb5ab86ac2356160359",
+      "minimumIOSMajor": 17
+    },
+    {
       "id": "lucas",
       "name": "Lluvia de billetes",
       "names": {
