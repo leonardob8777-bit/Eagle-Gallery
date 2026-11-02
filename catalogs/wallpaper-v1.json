@@ -305,6 +305,91 @@
       "byteCount": 662953,
       "sha256": "e310fdaa878dd264c78af9d69b7976651bcecbd8f75fdeb9004045da46324e14",
       "minimumIOSMajor": 17
+    },
+    {
+      "id": "casper",
+      "name": "Casper",
+      "names": {
+        "en": "Casper",
+        "es": "Casper",
+        "zh-Hans": "Casper"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/casper.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/casper.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/casper.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/casper.mp4",
+      "byteCount": 3214050,
+      "sha256": "dd99dec75ddaff027b03601f69d2baff7d9de4b1d2a401ac7a558577e03bcd15",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "dona",
+      "name": "Donas",
+      "names": {
+        "en": "Donuts",
+        "es": "Donas",
+        "zh-Hans": "甜甜圈"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/dona.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/dona.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/dona.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/dona.mp4",
+      "byteCount": 7589688,
+      "sha256": "fe72bf4010e3f2bed0571e86a2573581fb4f4c654568f2cb16b59f0495e0c980",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "krusty",
+      "name": "Caja sorpresa",
+      "names": {
+        "en": "Surprise Box",
+        "es": "Caja sorpresa",
+        "zh-Hans": "惊喜盒"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/krusty.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/krusty.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/krusty.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/krusty.mp4",
+      "byteCount": 1818206,
+      "sha256": "ebfb4533a75eb92f31fef172fd011c4c67697ff5134a55927b0dfc0fb2ddcfe7",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "minions",
+      "name": "Minions y el plátano",
+      "names": {
+        "en": "Minions & the Banana",
+        "es": "Minions y el plátano",
+        "zh-Hans": "小黄人与香蕉"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/minions.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/minions.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/minions.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/minions.mp4",
+      "byteCount": 14868896,
+      "sha256": "0310281c027aa7bd1d040f47d2905e04e157d1049a5397b3b5a5fff330539c2a",
+      "minimumIOSMajor": 17
+    },
+    {
+      "id": "scooby",
+      "name": "Portales",
+      "names": {
+        "en": "Portals",
+        "es": "Portales",
+        "zh-Hans": "传送门"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/scooby.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/scooby.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/scooby.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/scooby.mp4",
+      "byteCount": 7947560,
+      "sha256": "d3e3e25fcdd49f29a66359dc82b535a1fb068fe1fd1fbed00ef7b37da5247b9d",
+      "minimumIOSMajor": 17
     }
   ]
 }
