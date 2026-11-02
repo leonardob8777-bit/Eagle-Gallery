@@ -5,282 +5,404 @@
   "repo_icon": null,
   "themes": [
     {
-      "id": "orbit",
-      "name": "Orbit",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "planetas",
+      "name": "Planetas",
+      "names": {
+        "en": "Planets",
+        "es": "Planetas",
+        "zh-Hans": "行星"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/orbit.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/orbit.html",
-      "demoByteCount": 16497,
-      "demoSha256": "cc22580752f2e793b0439d133f70d432fc0ea6a65d8e4660726e842cd9eff440",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/orbit-v3.passthm",
-      "byteCount": 590298,
-      "sha256": "55a0f974e45b83e973a6157463be1255ea60964552a1c306fa2bd299798e8556",
-      "wallpaperID": "orbit"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/planetas.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/planetas-v1.passthm",
+      "byteCount": 974271,
+      "sha256": "919147bcd62ef6107dc0029946b6f253145bd271ae89e8dd94d6ff32e136eefc"
     },
     {
-      "id": "terminal",
-      "name": "Terminal",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "y2k-chrome",
+      "name": "Y2K cromado",
+      "names": {
+        "en": "Y2K Chrome",
+        "es": "Y2K cromado",
+        "zh-Hans": "Y2K 铬"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/terminal.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/terminal.html",
-      "demoByteCount": 15979,
-      "demoSha256": "98f6c11bff20b8ca9a88d109b79bb74fc49f4273ea52e2523af8c846184fd1e0",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/terminal-v3.passthm",
-      "byteCount": 141882,
-      "sha256": "8e953478f7d80d29f4b9e4b8a206f9243aa8e8003c233d44cf54f9c8eeb9415c",
-      "wallpaperID": "terminal"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/y2k-chrome.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/y2k-chrome-v1.passthm",
+      "byteCount": 724552,
+      "sha256": "655a2c29fbc607c3868068857d0b4a1b2a79d0c044d1aeadf2beb2b463af4ec1"
     },
     {
-      "id": "liquid-glass",
-      "name": "Liquid Glass",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "iced-out",
+      "name": "Iced Out",
+      "names": {
+        "en": "Iced Out",
+        "es": "Iced Out",
+        "zh-Hans": "冰钻"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/liquid-glass.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/liquid-glass.html",
-      "demoByteCount": 16448,
-      "demoSha256": "9d0d5cc03851262b82f32867961e63711e35028175ecee5d1e06b405719d1f53",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/liquid-glass-v3.passthm",
-      "byteCount": 312121,
-      "sha256": "65b02bbf3e27b8d0dfe9a6271fbc384abbeb3dc6c35c6b2e72acf2efa9400c5f",
-      "wallpaperID": "liquid-glass"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/iced-out.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/iced-out-v1.passthm",
+      "byteCount": 745730,
+      "sha256": "6b6d9da4832442dd626084403dfdf35f88d9f6ae97a9f0fc7b06777ad828f6c8"
     },
     {
-      "id": "brutal-paper",
-      "name": "Brutal Paper",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "gummy",
+      "name": "Gomitas",
+      "names": {
+        "en": "Gummy",
+        "es": "Gomitas",
+        "zh-Hans": "软糖"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/brutal-paper.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/brutal-paper.html",
-      "demoByteCount": 15568,
-      "demoSha256": "bcbcbd863a20933afbf788a178f6e6315db2016012beb74c3f86fa901c445669",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/brutal-paper-v3.passthm",
-      "byteCount": 25167,
-      "sha256": "00b008d4e2847d53fe66878ee63a4de2da6e89af62f864cb8bf4296df0358252",
-      "wallpaperID": "brutal-paper"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/gummy.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/gummy-v1.passthm",
+      "byteCount": 650776,
+      "sha256": "57a3de485c5f0d8c90b63a981a1fd7d16e21a2a1ad10dfb0e84049f1c3c69809"
     },
     {
-      "id": "synthwave",
-      "name": "Synthwave",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "neon-nights",
+      "name": "Noches de neón",
+      "names": {
+        "en": "Neon Nights",
+        "es": "Noches de neón",
+        "zh-Hans": "霓虹之夜"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/synthwave.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/synthwave.html",
-      "demoByteCount": 15964,
-      "demoSha256": "e8b3b956c0fd5d2da3dcded7a7c3a11e9cce0e020e8e57856b2de018a208dda1",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/synthwave-v3.passthm",
-      "byteCount": 354043,
-      "sha256": "0280014507656bdcad81b09cf5b5d808f6d19195db766ece2a5d62dc53f5b848",
-      "wallpaperID": "synthwave"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/neon-nights.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/neon-nights-v1.passthm",
+      "byteCount": 890685,
+      "sha256": "883f6bf200b7044d079809ba654f40623e3985fc41ad042f85db56849c7b9425"
     },
     {
-      "id": "pumpkin-night",
-      "name": "Pumpkin Night",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "drip",
+      "name": "Drip",
+      "names": {
+        "en": "Drip",
+        "es": "Drip",
+        "zh-Hans": "滴漆"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/pumpkin-night.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/pumpkin-night.html",
-      "demoByteCount": 17676,
-      "demoSha256": "4c9a7f7d9452b7cf892229cbbec6722da342e1c229d4816edb79ef683779ef15",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/pumpkin-night-v3.passthm",
-      "byteCount": 428769,
-      "sha256": "be9c1f88ae09b23b5e1f9cdb9f362dde444d61c5a1ee07edab6c22ab9ae56a87",
-      "wallpaperID": "pumpkin-night"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/drip.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/drip-v1.passthm",
+      "byteCount": 1247418,
+      "sha256": "7f95e412aa76ec88385e9358e27083fe2e6dd83721ee79a5c598affbf5a9cf92"
     },
     {
-      "id": "aurora",
-      "name": "Aurora",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "sports",
+      "name": "Deportes",
+      "names": {
+        "en": "Sports",
+        "es": "Deportes",
+        "zh-Hans": "运动"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/aurora.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/aurora.html",
-      "demoByteCount": 16973,
-      "demoSha256": "4c539b7da32280c665ff103cfee7bbaabc9c84fc9df46c99926a980ea13e6747",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/aurora-v3.passthm",
-      "byteCount": 485215,
-      "sha256": "b6530716919af040e00944173cfe6b566bcc763915b22d44efda16a122db0b79",
-      "wallpaperID": "aurora"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/sports.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/sports-v1.passthm",
+      "byteCount": 687425,
+      "sha256": "186247cafcbda4c87912d4db7e19b69492f68ec057d2228e5ce2fc0f3672f446"
     },
     {
-      "id": "abyss",
-      "name": "Abyss",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "loot",
+      "name": "Botín",
+      "names": {
+        "en": "Loot",
+        "es": "Botín",
+        "zh-Hans": "战利品"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/abyss.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/abyss.html",
-      "demoByteCount": 18534,
-      "demoSha256": "86a1fcdf07a8f7963f22574a2418fd519869f8926395d5bf329e1edf162de08b",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/abyss-v3.passthm",
-      "byteCount": 800750,
-      "sha256": "e1aee4637a8c4f270f38b3b1ee22fd3cd67efb6340e432448d29d4e2f6e32cf7",
-      "wallpaperID": "abyss"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/loot.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/loot-v1.passthm",
+      "byteCount": 809974,
+      "sha256": "f1bd4ee3319cfc6a131230952259bbee57a432041ca50c17e0a12a82b2da7e0b"
     },
     {
-      "id": "blueprint",
-      "name": "Blueprint",
-      "description": "Diseño completo de referencia. Instala los números y el fondo a juego por separado.",
+      "id": "glass-icons",
+      "name": "Cristal líquido",
+      "names": {
+        "en": "Liquid Glass",
+        "es": "Cristal líquido",
+        "zh-Hans": "液态玻璃"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
-      "version": "3",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/applicable-v3/blueprint.png",
-      "demoURL": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/live/blueprint.html",
-      "demoByteCount": 17538,
-      "demoSha256": "2241ba072f6a20552ad5715774858481c9479c5b0b2dbeb332a988c3b3ae05d3",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/blueprint-v3.passthm",
-      "byteCount": 25128,
-      "sha256": "176004ad36778133ec3061448c7e09633e431ea2b6a705c9a671dccf8d631180",
-      "wallpaperID": "blueprint"
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/glass-icons.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/glass-icons-v1.passthm",
+      "byteCount": 983403,
+      "sha256": "f24d82f9f2eab0f2ae102d7229855aad58fd4fbc95064ff2f0ef997018a15460"
     },
     {
-      "id": "creative-enredadera",
-      "name": "Enredadera",
+      "id": "trap-studio",
+      "name": "Estudio trap",
+      "names": {
+        "en": "Trap Studio",
+        "es": "Estudio trap",
+        "zh-Hans": "陷阱录音室"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/trap-studio.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/trap-studio-v1.passthm",
+      "byteCount": 974600,
+      "sha256": "e77f20ce3186eb58bd7bac818e4b091a5006ccdad96a84dbf00605341e378e3d"
+    },
+    {
+      "id": "pixel-quest",
+      "name": "Aventura píxel",
+      "names": {
+        "en": "Pixel Quest",
+        "es": "Aventura píxel",
+        "zh-Hans": "像素冒险"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/pixel-quest.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/pixel-quest-v1.passthm",
+      "byteCount": 752371,
+      "sha256": "c1c806a799853939a242a2330fd683246b3f8d6fdd746bcfbba182252acbbfcf"
+    },
+    {
+      "id": "snack-attack",
+      "name": "Antojos",
+      "names": {
+        "en": "Snack Attack",
+        "es": "Antojos",
+        "zh-Hans": "零食时间"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/snack-attack.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/snack-attack-v1.passthm",
+      "byteCount": 820132,
+      "sha256": "7ed7b761cac87fe72a2b760f0d19f8237dc42c3ce45ca41ba72dbb10fc931b2e"
+    },
+    {
+      "id": "tattoo-patches",
+      "name": "Parches tatuaje",
+      "names": {
+        "en": "Tattoo Patches",
+        "es": "Parches tatuaje",
+        "zh-Hans": "纹身贴"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/tattoo-patches.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/tattoo-patches-v1.passthm",
+      "byteCount": 1493102,
+      "sha256": "b1825727d0856a74e7cdea1072bd50ebec3a501ebb3ed8961b90830b297808b7"
+    },
+    {
+      "id": "manga-tokyo",
+      "name": "Manga Tokio",
+      "names": {
+        "en": "Manga Tokyo",
+        "es": "Manga Tokio",
+        "zh-Hans": "漫画东京"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/manga-tokyo.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/manga-tokyo-v1.passthm",
+      "byteCount": 1829360,
+      "sha256": "2d5cf8f0503377974715aac5f48922bc5880290c380b57826fa51d9f9dc31ba8"
+    },
+    {
+      "id": "elements",
+      "name": "Elementos",
+      "names": {
+        "en": "Elements",
+        "es": "Elementos",
+        "zh-Hans": "元素"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/elements.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/elements-v1.passthm",
+      "byteCount": 687433,
+      "sha256": "35332f41bb7952576f415780a964204736dd87f19290715c36d8052b6cb1ba41"
+    },
+    {
+      "id": "digits-sangre",
+      "name": "Sangre",
+      "names": {
+        "en": "Blood",
+        "es": "Sangre",
+        "zh-Hans": "鲜血"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-enredadera.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-enredadera-v1.passthm",
-      "byteCount": 328820,
-      "sha256": "1cf05f5e758ecc801d52a8b31d99949ce6d182658cc8f60f57a84be296915451"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-sangre.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-sangre-v1.passthm",
+      "byteCount": 189766,
+      "sha256": "ca6c1522a45ffe2b37e7a463747ff97a2799e7f086f6791a9e3c4160dbb68ffb"
     },
     {
-      "id": "creative-bordado",
-      "name": "Bordado",
+      "id": "digits-neumatico",
+      "name": "Neumático",
+      "names": {
+        "en": "Tire",
+        "es": "Neumático",
+        "zh-Hans": "轮胎"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-bordado.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-bordado-v1.passthm",
-      "byteCount": 385737,
-      "sha256": "991955a2d531466de7f82100de0c59ce02ed786bae956877fc0bd65bed072a9a"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-neumatico.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-neumatico-v1.passthm",
+      "byteCount": 746235,
+      "sha256": "62a749b30b0416b35b7f9a2b6b5574c1e71d49b8555678dffe5687db26e7cd77"
     },
     {
-      "id": "creative-cuerda",
-      "name": "Cuerda",
+      "id": "digits-planetas",
+      "name": "Números planeta",
+      "names": {
+        "en": "Planet Numbers",
+        "es": "Números planeta",
+        "zh-Hans": "星球数字"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-cuerda.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-cuerda-v1.passthm",
-      "byteCount": 323287,
-      "sha256": "7ee69997e0b272c5d383320e89573a5bb3def82f473e57803637312c817e13e6"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-planetas.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-planetas-v1.passthm",
+      "byteCount": 468736,
+      "sha256": "a6489b9d40330b4437350b0db6f623209eae669af4ba88ea309201ba85126442"
     },
     {
-      "id": "creative-constelacion",
-      "name": "Constelación",
+      "id": "digits-hielo",
+      "name": "Hielo",
+      "names": {
+        "en": "Ice",
+        "es": "Hielo",
+        "zh-Hans": "冰块"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-constelacion.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-constelacion-v1.passthm",
-      "byteCount": 438498,
-      "sha256": "f49e07fb3c305b7a02549b84711f4103d709b570b953ff8140b055da9c47defb"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-hielo.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-hielo-v1.passthm",
+      "byteCount": 562085,
+      "sha256": "3ca8384d249fe4101e84a47ef4e0209362fd90836a12e323e7f64344f9e44fba"
     },
     {
-      "id": "creative-cerillas",
-      "name": "Cerillas",
+      "id": "digits-cadena-oro",
+      "name": "Cadena de oro",
+      "names": {
+        "en": "Gold Chain",
+        "es": "Cadena de oro",
+        "zh-Hans": "金链"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-cerillas.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-cerillas-v1.passthm",
-      "byteCount": 173380,
-      "sha256": "177168ad2543c3f325ce4058b99fb6868f5f88f7c18d3b743babdf07345281df"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-cadena-oro.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-cadena-oro-v1.passthm",
+      "byteCount": 217545,
+      "sha256": "e5467c34c1a41527c64088dd171bb202f83e7d6ab440612d3ccb993c80eea2d7"
     },
     {
-      "id": "creative-circuito",
-      "name": "Circuito",
+      "id": "digits-lava",
+      "name": "Lava",
+      "names": {
+        "en": "Lava",
+        "es": "Lava",
+        "zh-Hans": "熔岩"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-circuito.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-circuito-v1.passthm",
-      "byteCount": 450103,
-      "sha256": "0acd6221e70b89171b1895257910b68ba5c65c053e258623206576411547b937"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-lava.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-lava-v1.passthm",
+      "byteCount": 659655,
+      "sha256": "dbfcd5521a61ef6a18560e25ac030cbd5094d98bd857a99817310ac49c2a63f2"
     },
     {
-      "id": "creative-fideos",
-      "name": "Fideos",
+      "id": "digits-gomitas",
+      "name": "Números de gomita",
+      "names": {
+        "en": "Gummy Numbers",
+        "es": "Números de gomita",
+        "zh-Hans": "软糖数字"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-fideos.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-fideos-v1.passthm",
-      "byteCount": 302388,
-      "sha256": "d91647c96122b120a13b1a5d2c3e83cbe95fa3522a1b0c9d57014041b0f2a6a8"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-gomitas.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-gomitas-v1.passthm",
+      "byteCount": 569675,
+      "sha256": "a16b2567e28bffd37f62e624217b8f3be098d5ea11dc8f3a2c8237579be7ff47"
     },
     {
-      "id": "creative-huesos",
-      "name": "Huesos",
+      "id": "digits-pixel",
+      "name": "Píxel",
+      "names": {
+        "en": "Pixel",
+        "es": "Píxel",
+        "zh-Hans": "像素"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-huesos.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-huesos-v1.passthm",
-      "byteCount": 236652,
-      "sha256": "036c6bc1f46723b04b45be69359f339519dd745260e2908eac3c64bd8a6378e2"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-pixel.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-pixel-v1.passthm",
+      "byteCount": 70429,
+      "sha256": "be83e517ee9cc325f46416fbcf3b1d8d69b9cb4a5507764e23d24c9f8b43f6ee"
     },
     {
-      "id": "creative-vitral",
-      "name": "Vitral",
+      "id": "digits-neon",
+      "name": "Neón",
+      "names": {
+        "en": "Neon",
+        "es": "Neón",
+        "zh-Hans": "霓虹"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-vitral.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-vitral-v1.passthm",
-      "byteCount": 424912,
-      "sha256": "39a3810af8eefa824a3836ee8ef97f7f06743b3a1d14627f45a127f744c98360"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-neon.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-neon-v1.passthm",
+      "byteCount": 303462,
+      "sha256": "e74d9beb4016bbdbf4e2ddc2f511ddcf909c18839651454799a3f30e9c851782"
     },
     {
-      "id": "creative-galaxia",
-      "name": "Galaxia",
+      "id": "digits-billete",
+      "name": "Billete",
+      "names": {
+        "en": "Cash",
+        "es": "Billete",
+        "zh-Hans": "钞票"
+      },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
       "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-galaxia.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-galaxia-v1.passthm",
-      "byteCount": 612443,
-      "sha256": "b091df747abb328982bc79cf82958588cad225e6bedf15ec1b46fa9572582964"
-    },
-    {
-      "id": "creative-origami",
-      "name": "Origami",
-      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-origami.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-origami-v1.passthm",
-      "byteCount": 230939,
-      "sha256": "6ff4442bfc68183a9ff63d249cc8dca0c8cfe71b0a1f80e5192b80d155da0d31"
-    },
-    {
-      "id": "creative-cinta-washi",
-      "name": "Cinta washi",
-      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-cinta-washi.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-cinta-washi-v1.passthm",
-      "byteCount": 422540,
-      "sha256": "f1ead5d082cb26f384ce5d1df9314c7f303f4320f0ea761367aaee7909d20651"
-    },
-    {
-      "id": "creative-plastilina",
-      "name": "Plastilina",
-      "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/creative-v1/creative-plastilina.png",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/creative-plastilina-v1.passthm",
-      "byteCount": 306297,
-      "sha256": "f9b491d7148fa73a76de6db6246c74b56812ccca303cdd213affed3c8dec34ec"
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/digits-v1/digits-billete.png",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/digits-billete-v1.passthm",
+      "byteCount": 822874,
+      "sha256": "eb29fc51ccb5b0affbd9d72886bd4bbf4884af1acbf75a7148518ba5fbe086bc"
     }
   ]
 }
