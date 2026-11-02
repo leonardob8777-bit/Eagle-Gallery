@@ -14,7 +14,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/orbit.png",
       "foregroundByteCount": 26445,
       "foregroundSha256": "b8e6ed869eba68ebd2116243041e55c1d0c48705aef9c22aad7ea26253525313",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Orbit",
+        "es": "Orbit",
+        "ru": "Орбита"
+      }
     },
     {
       "id": "terminal",
@@ -29,7 +34,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/terminal.png",
       "foregroundByteCount": 157770,
       "foregroundSha256": "fd6f134dee2e0bedc7ece10fd5d83c155db2a48eb408eda16075042f0a9f57c3",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Terminal",
+        "es": "Terminal",
+        "ru": "Терминал"
+      }
     },
     {
       "id": "liquid-glass",
@@ -44,7 +54,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/liquid-glass.png",
       "foregroundByteCount": 67058,
       "foregroundSha256": "4b852e650adbe3395d9e9105e6fbdf7a2ffe0b60400d96490a847d08df0331c0",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Liquid Glass",
+        "es": "Liquid Glass",
+        "ru": "Жидкое стекло"
+      }
     },
     {
       "id": "brutal-paper",
@@ -59,7 +74,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/brutal-paper.png",
       "foregroundByteCount": 49174,
       "foregroundSha256": "bb3e9f0ccc37383887d52e5dbe446d9dcb642e0924215721949543c9bfd98c7d",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Brutal Paper",
+        "es": "Brutal Paper",
+        "ru": "Брутальная бумага"
+      }
     },
     {
       "id": "synthwave",
@@ -74,7 +94,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/synthwave.png",
       "foregroundByteCount": 27611,
       "foregroundSha256": "4671b879cb99647feaf6dde47f209dc93f857fc910d292e31f5923aeb981dca0",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Synthwave",
+        "es": "Synthwave",
+        "ru": "Synthwave"
+      }
     },
     {
       "id": "pumpkin-night",
@@ -89,7 +114,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/pumpkin-night.png",
       "foregroundByteCount": 156017,
       "foregroundSha256": "decfe0723fde9e855b1dbefa9f495ff979e8a8bcdd0d2328e4590d6120e05fe6",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Pumpkin Night",
+        "es": "Pumpkin Night",
+        "ru": "Ночь тыкв"
+      }
     },
     {
       "id": "aurora",
@@ -104,7 +134,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/aurora.png",
       "foregroundByteCount": 38497,
       "foregroundSha256": "69c8daae37665544715d6d17e97221546ecf584fe626f643ba86d0525c03cbb9",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Aurora",
+        "es": "Aurora",
+        "ru": "Северное сияние"
+      }
     },
     {
       "id": "abyss",
@@ -119,7 +154,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/abyss.png",
       "foregroundByteCount": 116308,
       "foregroundSha256": "b3b01632c73725b88e67219665360d64f3ff016b47bdbb0fe4c187a4631398cc",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Abyss",
+        "es": "Abyss",
+        "ru": "Бездна"
+      }
     },
     {
       "id": "blueprint",
@@ -134,7 +174,12 @@
       "foregroundPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/foreground/blueprint.png",
       "foregroundByteCount": 32987,
       "foregroundSha256": "5c84d56149e27ffa98db528df458b1978eb75f56e61e72a5a8abef349a283215",
-      "listed": false
+      "listed": false,
+      "names": {
+        "en": "Blueprint",
+        "es": "Blueprint",
+        "ru": "Чертёж"
+      }
     },
     {
       "id": "puertas-rojas",
@@ -142,7 +187,8 @@
       "names": {
         "en": "Red Doors",
         "es": "Puertas rojas",
-        "zh-Hans": "红门"
+        "zh-Hans": "红门",
+        "ru": "Красные двери"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/puertas-rojas.tendies",
@@ -159,7 +205,8 @@
       "names": {
         "en": "Blue Flight",
         "es": "Vuelo azul",
-        "zh-Hans": "蓝色航班"
+        "zh-Hans": "蓝色航班",
+        "ru": "Синий полёт"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/avion-azul.tendies",
@@ -176,7 +223,8 @@
       "names": {
         "en": "Mist",
         "es": "Vaho",
-        "zh-Hans": "雾气"
+        "zh-Hans": "雾气",
+        "ru": "Туман"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/vaho.tendies",
@@ -193,7 +241,8 @@
       "names": {
         "en": "The Ball",
         "es": "Pelota",
-        "zh-Hans": "球"
+        "zh-Hans": "球",
+        "ru": "Мяч"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/pelota.tendies",
@@ -210,7 +259,8 @@
       "names": {
         "en": "Golden Hour",
         "es": "Hora dorada",
-        "zh-Hans": "黄金时刻"
+        "zh-Hans": "黄金时刻",
+        "ru": "Золотой час"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/hora-dorada.tendies",
@@ -227,7 +277,8 @@
       "names": {
         "en": "Darkroom",
         "es": "Cuarto oscuro",
-        "zh-Hans": "暗房"
+        "zh-Hans": "暗房",
+        "ru": "Тёмная комната"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/cuarto-oscuro.tendies",
@@ -244,7 +295,8 @@
       "names": {
         "en": "Paper Sea",
         "es": "Mar de papel",
-        "zh-Hans": "纸之海"
+        "zh-Hans": "纸之海",
+        "ru": "Бумажное море"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/mar-de-papel.tendies",
@@ -261,7 +313,8 @@
       "names": {
         "en": "Toad",
         "es": "Toad",
-        "zh-Hans": "Toad"
+        "zh-Hans": "Toad",
+        "ru": "Toad"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/toad.tendies",
@@ -278,7 +331,8 @@
       "names": {
         "en": "Hulk",
         "es": "Hulk",
-        "zh-Hans": "Hulk"
+        "zh-Hans": "Hulk",
+        "ru": "Hulk"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/hulk.tendies",
@@ -295,7 +349,8 @@
       "names": {
         "en": "Snoopy",
         "es": "Snoopy",
-        "zh-Hans": "Snoopy"
+        "zh-Hans": "Snoopy",
+        "ru": "Snoopy"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/snoopy.tendies",
@@ -312,7 +367,8 @@
       "names": {
         "en": "Casper",
         "es": "Casper",
-        "zh-Hans": "Casper"
+        "zh-Hans": "Casper",
+        "ru": "Casper"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/casper.tendies",
@@ -329,7 +385,8 @@
       "names": {
         "en": "Donuts",
         "es": "Donas",
-        "zh-Hans": "甜甜圈"
+        "zh-Hans": "甜甜圈",
+        "ru": "Пончики"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/dona.tendies",
@@ -346,7 +403,8 @@
       "names": {
         "en": "Surprise Box",
         "es": "Caja sorpresa",
-        "zh-Hans": "惊喜盒"
+        "zh-Hans": "惊喜盒",
+        "ru": "Коробка-сюрприз"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/krusty.tendies",
@@ -363,7 +421,8 @@
       "names": {
         "en": "Minions & the Banana",
         "es": "Minions y el plátano",
-        "zh-Hans": "小黄人与香蕉"
+        "zh-Hans": "小黄人与香蕉",
+        "ru": "Миньоны и банан"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/minions.tendies",
@@ -380,7 +439,8 @@
       "names": {
         "en": "Portals",
         "es": "Portales",
-        "zh-Hans": "传送门"
+        "zh-Hans": "传送门",
+        "ru": "Порталы"
       },
       "collection": "personal",
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/scooby.tendies",

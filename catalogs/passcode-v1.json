@@ -10,7 +10,8 @@
       "names": {
         "en": "Planets",
         "es": "Planetas",
-        "zh-Hans": "行星"
+        "zh-Hans": "行星",
+        "ru": "Планеты"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -26,7 +27,8 @@
       "names": {
         "en": "Y2K Chrome",
         "es": "Y2K cromado",
-        "zh-Hans": "Y2K 铬"
+        "zh-Hans": "Y2K 铬",
+        "ru": "Хром Y2K"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -42,7 +44,8 @@
       "names": {
         "en": "Iced Out",
         "es": "Iced Out",
-        "zh-Hans": "冰钻"
+        "zh-Hans": "冰钻",
+        "ru": "Iced Out"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -58,7 +61,8 @@
       "names": {
         "en": "Gummy",
         "es": "Gomitas",
-        "zh-Hans": "软糖"
+        "zh-Hans": "软糖",
+        "ru": "Мармелад"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -74,7 +78,8 @@
       "names": {
         "en": "Neon Nights",
         "es": "Noches de neón",
-        "zh-Hans": "霓虹之夜"
+        "zh-Hans": "霓虹之夜",
+        "ru": "Неоновые ночи"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -90,7 +95,8 @@
       "names": {
         "en": "Drip",
         "es": "Drip",
-        "zh-Hans": "滴漆"
+        "zh-Hans": "滴漆",
+        "ru": "Drip"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -106,7 +112,8 @@
       "names": {
         "en": "Sports",
         "es": "Deportes",
-        "zh-Hans": "运动"
+        "zh-Hans": "运动",
+        "ru": "Спорт"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -122,7 +129,8 @@
       "names": {
         "en": "Loot",
         "es": "Botín",
-        "zh-Hans": "战利品"
+        "zh-Hans": "战利品",
+        "ru": "Добыча"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -138,7 +146,8 @@
       "names": {
         "en": "Liquid Glass",
         "es": "Cristal líquido",
-        "zh-Hans": "液态玻璃"
+        "zh-Hans": "液态玻璃",
+        "ru": "Жидкое стекло"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -154,7 +163,8 @@
       "names": {
         "en": "Trap Studio",
         "es": "Estudio trap",
-        "zh-Hans": "陷阱录音室"
+        "zh-Hans": "陷阱录音室",
+        "ru": "Трэп-студия"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -170,7 +180,8 @@
       "names": {
         "en": "Pixel Quest",
         "es": "Aventura píxel",
-        "zh-Hans": "像素冒险"
+        "zh-Hans": "像素冒险",
+        "ru": "Пиксельный квест"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -186,7 +197,8 @@
       "names": {
         "en": "Snack Attack",
         "es": "Antojos",
-        "zh-Hans": "零食时间"
+        "zh-Hans": "零食时间",
+        "ru": "Перекус"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -202,7 +214,8 @@
       "names": {
         "en": "Tattoo Patches",
         "es": "Parches tatuaje",
-        "zh-Hans": "纹身贴"
+        "zh-Hans": "纹身贴",
+        "ru": "Тату-нашивки"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -218,7 +231,8 @@
       "names": {
         "en": "Manga Tokyo",
         "es": "Manga Tokio",
-        "zh-Hans": "漫画东京"
+        "zh-Hans": "漫画东京",
+        "ru": "Манга Токио"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -234,7 +248,8 @@
       "names": {
         "en": "Elements",
         "es": "Elementos",
-        "zh-Hans": "元素"
+        "zh-Hans": "元素",
+        "ru": "Стихии"
       },
       "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
       "authors": "Eagle",
@@ -250,7 +265,8 @@
       "names": {
         "en": "Blood",
         "es": "Sangre",
-        "zh-Hans": "鲜血"
+        "zh-Hans": "鲜血",
+        "ru": "Кровь"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -266,7 +282,8 @@
       "names": {
         "en": "Tire",
         "es": "Neumático",
-        "zh-Hans": "轮胎"
+        "zh-Hans": "轮胎",
+        "ru": "Шина"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -282,7 +299,8 @@
       "names": {
         "en": "Planet Numbers",
         "es": "Números planeta",
-        "zh-Hans": "星球数字"
+        "zh-Hans": "星球数字",
+        "ru": "Цифры-планеты"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -298,7 +316,8 @@
       "names": {
         "en": "Ice",
         "es": "Hielo",
-        "zh-Hans": "冰块"
+        "zh-Hans": "冰块",
+        "ru": "Лёд"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -314,7 +333,8 @@
       "names": {
         "en": "Gold Chain",
         "es": "Cadena de oro",
-        "zh-Hans": "金链"
+        "zh-Hans": "金链",
+        "ru": "Золотая цепь"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -330,7 +350,8 @@
       "names": {
         "en": "Lava",
         "es": "Lava",
-        "zh-Hans": "熔岩"
+        "zh-Hans": "熔岩",
+        "ru": "Лава"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -346,7 +367,8 @@
       "names": {
         "en": "Gummy Numbers",
         "es": "Números de gomita",
-        "zh-Hans": "软糖数字"
+        "zh-Hans": "软糖数字",
+        "ru": "Мармеладные цифры"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -362,7 +384,8 @@
       "names": {
         "en": "Pixel",
         "es": "Píxel",
-        "zh-Hans": "像素"
+        "zh-Hans": "像素",
+        "ru": "Пиксель"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -378,7 +401,8 @@
       "names": {
         "en": "Neon",
         "es": "Neón",
-        "zh-Hans": "霓虹"
+        "zh-Hans": "霓虹",
+        "ru": "Неон"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
@@ -394,7 +418,8 @@
       "names": {
         "en": "Cash",
         "es": "Billete",
-        "zh-Hans": "钞票"
+        "zh-Hans": "钞票",
+        "ru": "Купюра"
       },
       "description": "Números creativos para el código. Incluye los dígitos; no incluye fondo.",
       "authors": "Eagle",
