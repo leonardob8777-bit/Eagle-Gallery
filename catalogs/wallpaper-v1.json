@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "wallpapers": [
     {
+      "id": "ramo",
+      "name": "Ramo",
+      "names": {
+        "en": "Bouquet",
+        "es": "Ramo",
+        "zh-Hans": "花束",
+        "ru": "Букет",
+        "vi": "Bó hoa"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/ramo.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/ramo.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/ramo.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/ramo.mp4",
+      "byteCount": 4353983,
+      "sha256": "57e354d38b2c4093f66a3a7477d6ca606a194d04a90474dbfa8598e95e33fe82",
+      "minimumIOSMajor": 17
+    },
+    {
       "id": "tomjerry",
       "name": "El queso",
       "names": {
