@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "wallpapers": [
     {
+      "id": "naranja",
+      "name": "Naranja",
+      "names": {
+        "en": "Orange",
+        "es": "Naranja",
+        "zh-Hans": "橙子",
+        "ru": "Апельсин",
+        "vi": "Quả cam"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/naranja.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/naranja.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/naranja.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/naranja.mp4",
+      "byteCount": 805435,
+      "sha256": "0034aa38d7bd54eac2e63ef8db6ca981772b49fe82b6f7fe6a0a86367d85ba90",
+      "minimumIOSMajor": 17
+    },
+    {
       "id": "ramo",
       "name": "Ramo",
       "names": {
