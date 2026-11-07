@@ -5,6 +5,204 @@
   "repo_icon": null,
   "themes": [
     {
+      "id": "stained-glass",
+      "name": "Vitral",
+      "names": {
+        "en": "Stained Glass",
+        "es": "Vitral",
+        "zh-Hans": "彩绘玻璃",
+        "ru": "Витраж",
+        "vi": "Kính màu"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/stained-glass.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/stained-glass-v1.passthm",
+      "byteCount": 1432359,
+      "sha256": "379ab345f5f68f7b7d80df82d83396843cba6007e1e8d5e6ee4e5169b7abd776"
+    },
+    {
+      "id": "groovy-70s",
+      "name": "Groovy de los 70",
+      "names": {
+        "en": "70s Groovy",
+        "es": "Groovy de los 70",
+        "zh-Hans": "70 年代复古",
+        "ru": "Грув 70-х",
+        "vi": "Groovy thập niên 70"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/groovy-70s.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/groovy-70s-v1.passthm",
+      "byteCount": 1336013,
+      "sha256": "b20977cdc278d665c7d6dfdd580461f9aad7883d7517fd4762952b24c10b068c"
+    },
+    {
+      "id": "celestial-tarot",
+      "name": "Tarot celestial",
+      "names": {
+        "en": "Celestial Tarot",
+        "es": "Tarot celestial",
+        "zh-Hans": "星空塔罗",
+        "ru": "Небесное таро",
+        "vi": "Tarot thiên thể"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/celestial-tarot.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/celestial-tarot-v1.passthm",
+      "byteCount": 1337054,
+      "sha256": "58fae290241dc7b6f38aefacfc5173fc1fecd0c15f40bbe717e42895c3c83caf"
+    },
+    {
+      "id": "sunset-miami",
+      "name": "Atardecer en Miami",
+      "names": {
+        "en": "Sunset Miami",
+        "es": "Atardecer en Miami",
+        "zh-Hans": "迈阿密日落",
+        "ru": "Закат в Майами",
+        "vi": "Hoàng hôn Miami"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/sunset-miami.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/sunset-miami-v1.passthm",
+      "byteCount": 969355,
+      "sha256": "959b9f5f1595d7f78428d7f9f2f34bdd4ed1dc0cde4edbadeb0e518921de6096"
+    },
+    {
+      "id": "block-craft",
+      "name": "Bloques",
+      "names": {
+        "en": "Block Craft",
+        "es": "Bloques",
+        "zh-Hans": "方块世界",
+        "ru": "Мир блоков",
+        "vi": "Thế giới khối"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/block-craft.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/block-craft-v1.passthm",
+      "byteCount": 684269,
+      "sha256": "87ff3854be6ba80f256a65af4c002c92fd3313f5e3eca6a47a08369911be000e"
+    },
+    {
+      "id": "paper-cut",
+      "name": "Papel recortado",
+      "names": {
+        "en": "Paper Cut",
+        "es": "Papel recortado",
+        "zh-Hans": "剪纸",
+        "ru": "Вырезанная бумага",
+        "vi": "Giấy cắt"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/paper-cut.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/paper-cut-v1.passthm",
+      "byteCount": 927001,
+      "sha256": "53655ac1f28cfaaba3d8a19e80c69a8f0b8338c35d728b74f0fc48ff2d82a46e"
+    },
+    {
+      "id": "watercolor-garden",
+      "name": "Jardín en acuarela",
+      "names": {
+        "en": "Watercolor Garden",
+        "es": "Jardín en acuarela",
+        "zh-Hans": "水彩花园",
+        "ru": "Акварельный сад",
+        "vi": "Vườn màu nước"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/watercolor-garden.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/watercolor-garden-v1.passthm",
+      "byteCount": 1557589,
+      "sha256": "ff0893208118ce961409f28d7af0709dd87f92a959ec3169e84f7aca35a4b747"
+    },
+    {
+      "id": "cyber-hud",
+      "name": "HUD cibernético",
+      "names": {
+        "en": "Cyber HUD",
+        "es": "HUD cibernético",
+        "zh-Hans": "赛博 HUD",
+        "ru": "Кибер-HUD",
+        "vi": "HUD điện tử"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/cyber-hud.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/cyber-hud-v1.passthm",
+      "byteCount": 972289,
+      "sha256": "d3fecb715f52252021f43ca5fcfaf8c1d711b21042066bf73d20db077b350607"
+    },
+    {
+      "id": "y2k-tech",
+      "name": "Tecnología Y2K",
+      "names": {
+        "en": "Y2K Tech",
+        "es": "Tecnología Y2K",
+        "zh-Hans": "Y2K 科技",
+        "ru": "Техника Y2K",
+        "vi": "Công nghệ Y2K"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/y2k-tech.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/y2k-tech-v1.passthm",
+      "byteCount": 698138,
+      "sha256": "5cb4b8803a554638a90f4b00c26e81fcc0ce340c0d484123f38573a9de840fca"
+    },
+    {
+      "id": "slang-stickers",
+      "name": "Stickers de jerga",
+      "names": {
+        "en": "Slang Stickers",
+        "es": "Stickers de jerga",
+        "zh-Hans": "俚语贴纸",
+        "ru": "Стикеры сленга",
+        "vi": "Nhãn dán tiếng lóng"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/slang-stickers.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/slang-stickers-v1.passthm",
+      "byteCount": 887517,
+      "sha256": "e57d0eff3d81c7bf40eff35b242b8b9be319786715856620b9b71161e179c19c"
+    },
+    {
+      "id": "deep-sea",
+      "name": "Mar profundo",
+      "names": {
+        "en": "Deep Sea",
+        "es": "Mar profundo",
+        "zh-Hans": "深海",
+        "ru": "Глубокое море",
+        "vi": "Biển sâu"
+      },
+      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
+      "authors": "Eagle",
+      "version": "1",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/deep-sea.jpg",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/deep-sea-v1.passthm",
+      "byteCount": 720168,
+      "sha256": "63a962635297d6514b96efeb5fded1877dce45b81156266d35f4713e037b1eed"
+    },
+    {
       "id": "planetas",
       "name": "Planetas",
       "names": {
@@ -273,204 +471,6 @@
       "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/elements-v1.passthm",
       "byteCount": 687433,
       "sha256": "35332f41bb7952576f415780a964204736dd87f19290715c36d8052b6cb1ba41"
-    },
-    {
-      "id": "deep-sea",
-      "name": "Mar profundo",
-      "names": {
-        "en": "Deep Sea",
-        "es": "Mar profundo",
-        "zh-Hans": "深海",
-        "ru": "Глубокое море",
-        "vi": "Biển sâu"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/deep-sea.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/deep-sea-v1.passthm",
-      "byteCount": 720168,
-      "sha256": "63a962635297d6514b96efeb5fded1877dce45b81156266d35f4713e037b1eed"
-    },
-    {
-      "id": "slang-stickers",
-      "name": "Stickers de jerga",
-      "names": {
-        "en": "Slang Stickers",
-        "es": "Stickers de jerga",
-        "zh-Hans": "俚语贴纸",
-        "ru": "Стикеры сленга",
-        "vi": "Nhãn dán tiếng lóng"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/slang-stickers.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/slang-stickers-v1.passthm",
-      "byteCount": 887517,
-      "sha256": "e57d0eff3d81c7bf40eff35b242b8b9be319786715856620b9b71161e179c19c"
-    },
-    {
-      "id": "y2k-tech",
-      "name": "Tecnología Y2K",
-      "names": {
-        "en": "Y2K Tech",
-        "es": "Tecnología Y2K",
-        "zh-Hans": "Y2K 科技",
-        "ru": "Техника Y2K",
-        "vi": "Công nghệ Y2K"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/y2k-tech.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/y2k-tech-v1.passthm",
-      "byteCount": 698138,
-      "sha256": "5cb4b8803a554638a90f4b00c26e81fcc0ce340c0d484123f38573a9de840fca"
-    },
-    {
-      "id": "cyber-hud",
-      "name": "HUD cibernético",
-      "names": {
-        "en": "Cyber HUD",
-        "es": "HUD cibernético",
-        "zh-Hans": "赛博 HUD",
-        "ru": "Кибер-HUD",
-        "vi": "HUD điện tử"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/cyber-hud.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/cyber-hud-v1.passthm",
-      "byteCount": 972289,
-      "sha256": "d3fecb715f52252021f43ca5fcfaf8c1d711b21042066bf73d20db077b350607"
-    },
-    {
-      "id": "watercolor-garden",
-      "name": "Jardín en acuarela",
-      "names": {
-        "en": "Watercolor Garden",
-        "es": "Jardín en acuarela",
-        "zh-Hans": "水彩花园",
-        "ru": "Акварельный сад",
-        "vi": "Vườn màu nước"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/watercolor-garden.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/watercolor-garden-v1.passthm",
-      "byteCount": 1557589,
-      "sha256": "ff0893208118ce961409f28d7af0709dd87f92a959ec3169e84f7aca35a4b747"
-    },
-    {
-      "id": "paper-cut",
-      "name": "Papel recortado",
-      "names": {
-        "en": "Paper Cut",
-        "es": "Papel recortado",
-        "zh-Hans": "剪纸",
-        "ru": "Вырезанная бумага",
-        "vi": "Giấy cắt"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/paper-cut.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/paper-cut-v1.passthm",
-      "byteCount": 927001,
-      "sha256": "53655ac1f28cfaaba3d8a19e80c69a8f0b8338c35d728b74f0fc48ff2d82a46e"
-    },
-    {
-      "id": "block-craft",
-      "name": "Bloques",
-      "names": {
-        "en": "Block Craft",
-        "es": "Bloques",
-        "zh-Hans": "方块世界",
-        "ru": "Мир блоков",
-        "vi": "Thế giới khối"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/block-craft.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/block-craft-v1.passthm",
-      "byteCount": 684269,
-      "sha256": "87ff3854be6ba80f256a65af4c002c92fd3313f5e3eca6a47a08369911be000e"
-    },
-    {
-      "id": "sunset-miami",
-      "name": "Atardecer en Miami",
-      "names": {
-        "en": "Sunset Miami",
-        "es": "Atardecer en Miami",
-        "zh-Hans": "迈阿密日落",
-        "ru": "Закат в Майами",
-        "vi": "Hoàng hôn Miami"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/sunset-miami.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/sunset-miami-v1.passthm",
-      "byteCount": 969355,
-      "sha256": "959b9f5f1595d7f78428d7f9f2f34bdd4ed1dc0cde4edbadeb0e518921de6096"
-    },
-    {
-      "id": "celestial-tarot",
-      "name": "Tarot celestial",
-      "names": {
-        "en": "Celestial Tarot",
-        "es": "Tarot celestial",
-        "zh-Hans": "星空塔罗",
-        "ru": "Небесное таро",
-        "vi": "Tarot thiên thể"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/celestial-tarot.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/celestial-tarot-v1.passthm",
-      "byteCount": 1337054,
-      "sha256": "58fae290241dc7b6f38aefacfc5173fc1fecd0c15f40bbe717e42895c3c83caf"
-    },
-    {
-      "id": "groovy-70s",
-      "name": "Groovy de los 70",
-      "names": {
-        "en": "70s Groovy",
-        "es": "Groovy de los 70",
-        "zh-Hans": "70 年代复古",
-        "ru": "Грув 70-х",
-        "vi": "Groovy thập niên 70"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/groovy-70s.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/groovy-70s-v1.passthm",
-      "byteCount": 1336013,
-      "sha256": "b20977cdc278d665c7d6dfdd580461f9aad7883d7517fd4762952b24c10b068c"
-    },
-    {
-      "id": "stained-glass",
-      "name": "Vitral",
-      "names": {
-        "en": "Stained Glass",
-        "es": "Vitral",
-        "zh-Hans": "彩绘玻璃",
-        "ru": "Витраж",
-        "vi": "Kính màu"
-      },
-      "description": "Símbolos creativos para el código. Incluye las 10 teclas; no incluye fondo.",
-      "authors": "Eagle",
-      "version": "1",
-      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/passcode/symbols-v1/stained-glass.jpg",
-      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/passcode/packages/stained-glass-v1.passthm",
-      "byteCount": 1432359,
-      "sha256": "379ab345f5f68f7b7d80df82d83396843cba6007e1e8d5e6ee4e5169b7abd776"
     },
     {
       "id": "digits-sangre",
