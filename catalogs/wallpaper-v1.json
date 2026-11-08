@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "wallpapers": [
     {
+      "id": "eagle-swarm",
+      "name": "Eagle Swarm",
+      "names": {
+        "en": "Eagle Swarm",
+        "es": "Enjambre Eagle",
+        "zh-Hans": "Eagle 鹰群",
+        "ru": "Стая Eagle",
+        "vi": "Bầy Eagle"
+      },
+      "collection": "personal",
+      "url": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/wallpapers/packages/eagle-swarm.tendies",
+      "preview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/eagle-swarm.gif",
+      "stillPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/eagle-swarm.png",
+      "motionPreview": "https://raw.githubusercontent.com/leonardob8777-bit/Eagle-Gallery/main/previews/wallpapers/motion/eagle-swarm.mp4",
+      "byteCount": 266697,
+      "sha256": "a4e00ff775dc400f1af23ae841931b8adfa9948f5af9849f77c84c8d6b582724",
+      "minimumIOSMajor": 17
+    },
+    {
       "id": "naranja",
       "name": "Naranja",
       "names": {
